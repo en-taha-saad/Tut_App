@@ -1,5 +1,5 @@
 import 'package:flutter/painting.dart';
-import 'package:flutter_app/presentation/font_manager.dart';
+import 'package:flutter_app/presentation/resources/font_manager.dart';
 
 TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color) {
   return TextStyle(
