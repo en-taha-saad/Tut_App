@@ -5,11 +5,12 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.6 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  flutter_svg: ^1.1.5
 
 dev_dependencies:
   flutter_test:
@@ -19,11 +20,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/splash_logo.png
-    - assets/images/onboarding_logo1.svg
-    - assets/images/onboarding_logo2.svg
-    - assets/images/onboarding_logo3.svg
-    - assets/images/onboarding_logo4.svg
+    - assets/images/
+    
   fonts:
     - family: Montserrat
       fonts:
