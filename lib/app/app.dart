@@ -1,18 +1,18 @@
-// ignore_for_file: library_private_types_in_public_api
-
-import 'package:flutter/material.dart';
-import 'package:flutter_app/presentation/resources/routes_manager.dart';
 import 'package:flutter_app/presentation/resources/theme_manager.dart';
+import 'package:flutter/material.dart';
+
+import '../presentation/resources/routes_manager.dart';
 
 class MyApp extends StatefulWidget {
   // named constructor
-  const MyApp._internal();
+  MyApp._internal();
 
-  // singleton or single instance
-  static const MyApp _instance = MyApp._internal();
+  int appState = 0;
 
-  // factory
-  factory MyApp() => _instance;
+  static final MyApp _instance =
+      MyApp._internal(); // singleton or single instance
+
+  factory MyApp() => _instance; // factory
 
   @override
   _MyAppState createState() => _MyAppState();

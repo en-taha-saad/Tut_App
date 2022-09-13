@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class StoreDetailsView extends StatefulWidget {
   const StoreDetailsView({Key? key}) : super(key: key);
 
   @override
-  State<StoreDetailsView> createState() => _StoreDetailsViewState();
+  _StoreDetailsViewState createState() => _StoreDetailsViewState();
 }
 
 class _StoreDetailsViewState extends State<StoreDetailsView> {
