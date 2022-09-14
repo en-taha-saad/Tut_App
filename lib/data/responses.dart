@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
+part 'responses.g.dart';
 
 @JsonSerializable()
 class BaseResponse {
@@ -17,6 +18,7 @@ class CustomerResponse {
   String? name;
   @JsonKey(name: 'numOfNotifications')
   int? numOfNotifications;
+  CustomerResponse({this.id, this.name, this.numOfNotifications});
 }
 
 @JsonSerializable()
@@ -27,6 +29,7 @@ class ContactsResponse {
   String? email;
   @JsonKey(name: 'link')
   String? link;
+  ContactsResponse({this.phone, this.email, this.link});
 }
 
 @JsonSerializable()
@@ -35,4 +38,5 @@ class AuthenticationResponse extends BaseResponse {
   CustomerResponse? customer;
   @JsonKey(name: 'contacts')
   ContactsResponse? contacts;
+  AuthenticationResponse({this.customer, this.contacts});
 }
