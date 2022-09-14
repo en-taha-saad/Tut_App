@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../presentation/resources/routes_manager.dart';
 
-class MyApp extends StatefulWidget {
+// ignore: must_be_immutable
+class MyApp extends StatelessWidget {
   // named constructor
   MyApp._internal();
 
@@ -14,11 +15,6 @@ class MyApp extends StatefulWidget {
 
   factory MyApp() => _instance; // factory
 
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

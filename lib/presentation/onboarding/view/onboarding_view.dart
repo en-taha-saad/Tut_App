@@ -111,14 +111,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 child: SvgPicture.asset(ImageAssets.leftArrowIc),
               ),
               onTap: () {
-                // go to previous slide
-                // _pageController.animateToPage(
-                //   _getPreviousIndex(),
-                //   duration: const Duration(
-                //     milliseconds: AppConstants.sliderAnimationTime,
-                //   ),
-                //   curve: Curves.bounceInOut,
-                // );
+                _pageController.animateToPage(
+                  _viewModel.goPrevious(),
+                  duration: const Duration(
+                    milliseconds: AppConstants.sliderAnimationTime,
+                  ),
+                  curve: Curves.bounceInOut,
+                );
               },
             ),
           ),
@@ -140,14 +139,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   child: SvgPicture.asset(ImageAssets.rightArrowIc),
                 ),
                 onTap: () {
-                  // go to previous slide
-                  // _pageController.animateToPage(
-                  //   _getNextIndex(),
-                  //   duration: const Duration(
-                  //     milliseconds: AppConstants.sliderAnimationTime,
-                  //   ),
-                  //   curve: Curves.bounceInOut,
-                  // );
+                  _pageController.animateToPage(
+                    _viewModel.goNext(),
+                    duration: const Duration(
+                      milliseconds: AppConstants.sliderAnimationTime,
+                    ),
+                    curve: Curves.bounceInOut,
+                  );
                 }),
           )
         ],
