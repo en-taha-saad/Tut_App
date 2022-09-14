@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_app/domain/models.dart';
+import 'package:flutter_app/domain/models/onboarding/sliderobject.dart';
+import 'package:flutter_app/domain/models/onboarding/sliderviewobject.dart';
 import 'package:flutter_app/presentation/resources/assets_manager.dart';
 import 'package:flutter_app/presentation/resources/strings_manager.dart';
 
@@ -67,33 +68,33 @@ class OnBoardingViewModel extends BaseViewModel
   // onboarding private functions
   List<SliderObject> _getSliderData() => [
         SliderObject(
-          title: AppStrings.onBoardingTitle1,
-          subTitle: AppStrings.onBoardingSubTitle1,
-          image: ImageAssets.onboardingLogo1,
+          AppStrings.onBoardingTitle1,
+          AppStrings.onBoardingSubTitle1,
+          ImageAssets.onboardingLogo1,
         ),
         SliderObject(
-          title: AppStrings.onBoardingTitle2,
-          subTitle: AppStrings.onBoardingSubTitle2,
-          image: ImageAssets.onboardingLogo2,
+          AppStrings.onBoardingTitle2,
+          AppStrings.onBoardingSubTitle2,
+          ImageAssets.onboardingLogo2,
         ),
         SliderObject(
-          title: AppStrings.onBoardingTitle3,
-          subTitle: AppStrings.onBoardingSubTitle3,
-          image: ImageAssets.onboardingLogo3,
+          AppStrings.onBoardingTitle3,
+          AppStrings.onBoardingSubTitle3,
+          ImageAssets.onboardingLogo3,
         ),
         SliderObject(
-          title: AppStrings.onBoardingTitle4,
-          subTitle: AppStrings.onBoardingSubTitle4,
-          image: ImageAssets.onboardingLogo4,
+          AppStrings.onBoardingTitle4,
+          AppStrings.onBoardingSubTitle4,
+          ImageAssets.onboardingLogo4,
         ),
       ];
 
   void _postDataToView() {
     inputSliderViewObject.add(
       SliderViewObject(
-        sliderObject: _list[_currentIndex],
-        numOfSlides: _list.length,
-        currentIndex: _currentIndex,
+        _list[_currentIndex],
+        _list.length,
+        _currentIndex,
       ),
     );
   }

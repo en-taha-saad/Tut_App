@@ -1,4 +1,5 @@
-import 'package:flutter_app/domain/models.dart';
+import 'package:flutter_app/domain/models/onboarding/sliderobject.dart';
+import 'package:flutter_app/domain/models/onboarding/sliderviewobject.dart';
 import 'package:flutter_app/presentation/onboarding/viewmodel/onboarding_viewmodel.dart';
 import 'package:flutter_app/presentation/resources/assets_manager.dart';
 import 'package:flutter_app/presentation/resources/color_manager.dart';
@@ -66,7 +67,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               itemCount: sliderViewObject.numOfSlides,
               onPageChanged: (index) => _viewModel.onPageChanged(index),
               itemBuilder: (context, index) {
-                return OnBoardingPage(sliderViewObject.sliderObject!);
+                return OnBoardingPage(sliderViewObject.sliderObject);
               },
             ),
             bottomSheet: Container(
@@ -176,7 +177,7 @@ class OnBoardingPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(AppPadding.p8),
           child: Text(
-            "${_sliderObject.title}",
+            _sliderObject.title,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.displayLarge,
           ),
@@ -184,13 +185,13 @@ class OnBoardingPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(AppPadding.p8),
           child: Text(
-            "${_sliderObject.subTitle}",
+            _sliderObject.subTitle,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
         const SizedBox(height: AppSize.s60),
-        SvgPicture.asset("${_sliderObject.image}")
+        SvgPicture.asset(_sliderObject.image)
       ],
     );
   }
