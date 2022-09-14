@@ -1,7 +1,9 @@
+import 'package:flutter_app/app/constants.dart';
+
 extension NonNullDouble on double? {
-  double orZero() {
+  double orZeroDouble() {
     if (this == null) {
-      return 0.0;
+      return Constants.zeroDouble;
     } else {
       return this!;
     }
