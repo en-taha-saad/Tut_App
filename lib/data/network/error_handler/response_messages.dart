@@ -5,11 +5,13 @@ class ResponseMessage {
       "success"; // success with no data (no content)
   static const String BAD_REQUEST =
       "Bad request, Try again later"; // failure, API rejected request
-  static const String UNAUTORISED =
-      "User is unauthorized, Try again later"; // failure, user is not authorised
+  static const String UNAUTHORIZED =
+      "User is unauthorised, Try again later"; // failure, user is not authorised
   static const String FORBIDDEN =
       "Forbidden request, Try again later"; //  failure, API rejected request
   static const String INTERNAL_SERVER_ERROR =
+      "Some thing went wrong, Try again later"; // failure, crash in server side
+  static const String NOT_FOUND =
       "Some thing went wrong, Try again later"; // failure, crash in server side
 
   // local status code
