@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'font_manager.dart';
+import 'package:flutter_app/presentation/resources/fonts_manager/font_constants.dart';
+import 'package:flutter_app/presentation/resources/fonts_manager/fontsize.dart';
+import 'package:flutter_app/presentation/resources/fonts_manager/fontweight_manager.dart';
 
 TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color) {
   return TextStyle(
@@ -33,8 +34,7 @@ TextStyle getLightStyle(
 
 // bold style
 
-TextStyle getBoldStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+TextStyle getBoldStyle({double fontSize = FontSize.s12, required Color color}) {
   return _getTextStyle(fontSize, FontWeightManager.bold, color);
 }
 

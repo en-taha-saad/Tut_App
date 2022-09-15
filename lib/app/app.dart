@@ -1,7 +1,8 @@
+import 'package:flutter_app/presentation/resources/routes/route_generator.dart';
 import 'package:flutter_app/presentation/resources/theme_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../presentation/resources/routes_manager.dart';
+import '../presentation/resources/routes/routes.dart';
 
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
