@@ -1,6 +1,6 @@
-import 'package:flutter_app/presentation/resources/color_manager.dart';
+import 'package:flutter_app/presentation/resources/other_managers/color_manager.dart';
 import 'package:flutter_app/presentation/resources/fonts_manager/fontsize.dart';
-import 'package:flutter_app/presentation/resources/styles_manager.dart';
+import 'package:flutter_app/presentation/resources/other_managers/styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/presentation/resources/values_manager/app_padding.dart';
 import 'package:flutter_app/presentation/resources/values_manager/app_size.dart';

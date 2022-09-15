@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_app/domain/models/onboarding/sliderobject.dart';
 import 'package:flutter_app/domain/models/onboarding/sliderviewobject.dart';
-import 'package:flutter_app/presentation/resources/assets_manager.dart';
-import 'package:flutter_app/presentation/resources/strings_manager.dart';
+import 'package:flutter_app/presentation/resources/other_managers/assets_manager.dart';
+import 'package:flutter_app/presentation/resources/other_managers/strings_manager.dart';
 
 import '../../base/baseviewmodel.dart';
 
