@@ -22,5 +22,5 @@ class ResponseMessage {
   static const String CACHE_ERROR = "Cache error, Try again later";
   static const String NO_INTERNET_CONNECTION =
       "Please check your internet connection";
-  static const String UNKNOWN = "Some thing went wrong, Try again later";
+  static const String DEFAULT = "Some thing went wrong, Try again later";
 }

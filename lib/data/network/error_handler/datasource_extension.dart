@@ -71,6 +71,11 @@ extension DataSourceExtension on DataSource {
           ResponseCode.NO_INTERNET_CONNECTION,
           ResponseMessage.NO_INTERNET_CONNECTION,
         );
+      case DataSource.DEFAULT:
+        return Failure(
+          ResponseCode.DEFAULT,
+          ResponseMessage.DEFAULT,
+        );
     }
   }
 }
