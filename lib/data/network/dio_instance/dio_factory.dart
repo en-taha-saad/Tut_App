@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_app/app/constants.dart';
 import 'package:flutter_app/data/network/dio_instance/dio_instance_constants.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
   Future<Dio> getDio() async {
@@ -19,6 +21,17 @@ class DioFactory {
       receiveTimeout: _timeOut,
       headers: headers,
     );
+
+    if (!kReleaseMode) {
+      // its for debug m ode only
+      dio.interceptors.add(
+        PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseHeader: true,
+        ),
+      );
+    }
     return dio;
   }
 }
