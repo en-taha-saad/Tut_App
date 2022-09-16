@@ -4,7 +4,6 @@ import 'package:flutter_app/data/network/error_handler/api_internal_status.dart'
 import 'package:flutter_app/data/network/error_handler/datasource_enum.dart';
 import 'package:flutter_app/data/network/error_handler/datasource_extension.dart';
 import 'package:flutter_app/data/network/error_handler/error_handler.dart';
-import 'package:flutter_app/data/network/error_handler/response_code.dart';
 import 'package:flutter_app/data/network/error_handler/response_messages.dart';
 import 'package:flutter_app/data/network/internet_checker/network_info.dart';
 import 'package:flutter_app/domain/models/login/authentication.dart';
