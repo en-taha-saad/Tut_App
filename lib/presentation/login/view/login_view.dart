@@ -15,19 +15,24 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel(_loginUseCase);
+  // final LoginViewModel _viewModel = LoginViewModel(_loginUseCase);
+  final LoginViewModel _viewModel = LoginViewModel();
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _userPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   _bind() {
     _viewModel.start();
-    _userNameController.addListener(() {
-      _viewModel.setUsername(_userNameController.text);
-    });
-    _userPasswordController.addListener(() {
-      _viewModel.setPassword(_userPasswordController.text);
-    });
+    _userNameController.addListener(
+      () {
+        _viewModel.setUsername(_userNameController.text);
+      },
+    );
+    _userPasswordController.addListener(
+      () {
+        _viewModel.setPassword(_userPasswordController.text);
+      },
+    );
   }
 
   @override
@@ -111,7 +116,9 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(height: AppSize.s28),
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: AppPadding.p28, right: AppPadding.p28),
+                    left: AppPadding.p28,
+                    right: AppPadding.p28,
+                  ),
                   child: StreamBuilder<bool>(
                     stream: _viewModel.outputAreAllInputsValid,
                     builder: (context, snapshot) {
