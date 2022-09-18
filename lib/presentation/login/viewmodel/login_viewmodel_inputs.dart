@@ -7,4 +7,5 @@ abstract class LoginViewModelInputs {
   // stream controller input
   Sink get inputUsername;
   Sink get inputPassword;
+  Sink get inputAreAllInputsValid;
 }
