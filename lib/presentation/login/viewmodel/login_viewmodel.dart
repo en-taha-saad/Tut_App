@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_app/presentation/base/baseviewmodel.dart';
+import 'package:flutter_app/presentation/common/freezed_data_classes.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -9,6 +10,8 @@ class LoginViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   final StreamController _passwordController =
       StreamController<String>.broadcast();
+
+  var loginObject = LoginObject("", "");
 
   @override
   void dispose() {
@@ -27,12 +30,14 @@ class LoginViewModel extends BaseViewModel
 
   @override
   setPassword(String password) {
-    throw UnimplementedError();
+    inputPassword.add(password);
+    loginObject = loginObject.copyWith(password: password);
   }
 
   @override
   setUsername(String username) {
-    throw UnimplementedError();
+    inputUsername.add(username);
+    loginObject = loginObject.copyWith(username: username);
   }
 
   @override

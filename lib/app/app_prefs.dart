@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:flutter_app/presentation/resources/fonts/language_manager.dart';
+import 'package:flutter_app/presentation/resources/language_manager/language_type.dart';
+import 'package:flutter_app/presentation/resources/language_manager/language_type_extension.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String PREFS_KEY_LANG = "PREFS_KEY_LANG";
