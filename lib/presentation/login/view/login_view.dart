@@ -10,10 +10,20 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel();
+  final LoginViewModel _viewModel = LoginViewModel(_loginUseCase);
 
-  _bind() => _viewModel.start();
+  _bind() {
+    _viewModel.start();
+    _userNameController.addListener(() {
+      _viewModel.setUsername(_userNameController.text);
+    });
+    _userPasswordController.addListener(() {
+      _viewModel.setPassword(_userPasswordController.text);
+    });
+  }
 
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _userPasswordController = TextEditingController();
   @override
   void dispose() {
     _viewModel.dispose();
