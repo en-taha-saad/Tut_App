@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/presentation/login/viewmodel/login_viewmodel.dart';
+import 'package:flutter_app/presentation/resources/other_managers/assets_manager.dart';
+import 'package:flutter_app/presentation/resources/other_managers/color_manager.dart';
+import 'package:flutter_app/presentation/resources/other_managers/strings_manager.dart';
+import 'package:flutter_app/presentation/resources/values_manager/app_padding.dart';
+import 'package:flutter_app/presentation/resources/values_manager/app_size.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -11,6 +16,9 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final LoginViewModel _viewModel = LoginViewModel(_loginUseCase);
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _userPasswordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   _bind() {
     _viewModel.start();
@@ -22,8 +30,6 @@ class _LoginViewState extends State<LoginView> {
     });
   }
 
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _userPasswordController = TextEditingController();
   @override
   void dispose() {
     _viewModel.dispose();
@@ -37,7 +43,92 @@ class _LoginViewState extends State<LoginView> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container();
+  Widget build(BuildContext context) => _getContentWidget();
+
+  Widget _getContentWidget() {
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.only(top: AppPadding.p100),
+        color: ColorManager.white,
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const Center(
+                  child: Image(
+                    image: AssetImage(
+                      ImageAssets.splashLogo,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppSize.s28),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: AppPadding.p28,
+                    right: AppPadding.p28,
+                  ),
+                  child: StreamBuilder<bool>(
+                    stream: _viewModel.outputIsUsernameValid,
+                    builder: (context, snapshot) {
+                      return TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _userNameController,
+                        decoration: InputDecoration(
+                          hintText: AppStrings.username,
+                          labelText: AppStrings.username,
+                          errorText: (snapshot.data ?? true)
+                              ? null
+                              : AppStrings.usernameError,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: AppSize.s28),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: AppPadding.p28,
+                    right: AppPadding.p28,
+                  ),
+                  child: StreamBuilder<bool>(
+                    stream: _viewModel.outputIsPasswordValid,
+                    builder: (context, snapshot) {
+                      return TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: _userPasswordController,
+                        decoration: InputDecoration(
+                          hintText: AppStrings.password,
+                          labelText: AppStrings.password,
+                          errorText: (snapshot.data ?? true)
+                              ? null
+                              : AppStrings.passwordError,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: AppSize.s28),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: AppPadding.p28, right: AppPadding.p28),
+                  child: StreamBuilder<bool>(
+                    stream: _viewModel.outputAreAllInputsValid,
+                    builder: (context, snapshot) {
+                      return ElevatedButton(
+                        onPressed: (snapshot.data ?? false)
+                            ? () => _viewModel.login()
+                            : null,
+                        child: const Text(AppStrings.login),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
