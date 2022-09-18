@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_app/domain/models/onboarding/sliderobject.dart';
 import 'package:flutter_app/domain/models/onboarding/sliderviewobject.dart';
+import 'package:flutter_app/presentation/onboarding/viewmodel/onboarding_viewmodel_inputs.dart';
+import 'package:flutter_app/presentation/onboarding/viewmodel/onboarding_viewmodel_outputs.dart';
 import 'package:flutter_app/presentation/resources/other_managers/assets_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/strings_manager.dart';
 
@@ -98,19 +100,4 @@ class OnBoardingViewModel extends BaseViewModel
       ),
     );
   }
-}
-
-// inputs mean that "Orders" that our view model will receive from view
-abstract class OnBoardingViewModelInputs {
-  int goNext(); // when user clicks on right arrow or swipe left
-  int goPrevious(); // when user clicks on left arrow or swipe right
-  void onPageChanged(int index);
-
-  // stream controller input
-  Sink get inputSliderViewObject;
-}
-
-abstract class OnBoardingViewModelOutputs {
-  // stream controller output
-  Stream<SliderViewObject> get outputSliderViewObject;
 }

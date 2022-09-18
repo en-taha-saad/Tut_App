@@ -1,7 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/rendering.dart';
+import 'package:flutter_app/domain/usecase/login_usecase/login_usecase.dart';
+import 'package:flutter_app/domain/usecase/login_usecase/login_usecase_input.dart';
 import 'package:flutter_app/presentation/base/baseviewmodel.dart';
 import 'package:flutter_app/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_app/presentation/login/viewmodel/login_viewmodel_inputs.dart';
+import 'package:flutter_app/presentation/login/viewmodel/login_viewmodel_outputs.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -11,6 +16,7 @@ class LoginViewModel extends BaseViewModel
   final StreamController _passwordController =
       StreamController<String>.broadcast();
 
+  late final LoginUseCase _loginUseCase;
   var loginObject = LoginObject("", "");
 
   @override
@@ -41,8 +47,23 @@ class LoginViewModel extends BaseViewModel
   }
 
   @override
-  login() {
-    throw UnimplementedError();
+  login() async {
+    (await _loginUseCase.execute(
+      LoginUseCaseInput(
+        loginObject.username,
+        loginObject.password,
+      ),
+    ))
+        .fold(
+      (failure) => {
+        // left -> failure
+        debugPrint("failure = ${failure.message}")
+      },
+      (data) => {
+        // right -> success (data)
+        debugPrint("data = ${data.customer?.name}")
+      },
+    );
   }
 
   @override
@@ -62,21 +83,4 @@ class LoginViewModel extends BaseViewModel
   bool _isUsernameValid(String username) => username.isNotEmpty;
 
   bool _isPasswordValid(String password) => password.isNotEmpty;
-}
-
-// inputs mean that "Orders" that our view model will receive from view
-abstract class LoginViewModelInputs {
-  setUsername(String username);
-  setPassword(String password);
-  login();
-
-  // stream controller input
-  Sink get inputUsername;
-  Sink get inputPassword;
-}
-
-abstract class LoginViewModelOutputs {
-  // stream controller output
-  Stream<bool> get outputIsUsernameValid;
-  Stream<bool> get outputIsPasswordValid;
 }
