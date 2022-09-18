@@ -10,9 +10,8 @@ import 'package:flutter_app/presentation/login/viewmodel/login_viewmodel_outputs
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
-  // final LoginUseCase _loginUseCase;
-  // LoginViewModel(this._loginUseCase);
-  LoginViewModel();
+  final LoginUseCase _loginUseCase;
+  LoginViewModel(this._loginUseCase);
   var loginObject = LoginObject("", "");
 
   @override
@@ -82,21 +81,21 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
-    // (await _loginUseCase.execute(
-    //   LoginUseCaseInput(
-    //     loginObject.username,
-    //     loginObject.password,
-    //   ),
-    // ))
-    //     .fold(
-    //   (failure) => {
-    //     // left -> failure
-    //     debugPrint("failure = ${failure.message}")
-    //   },
-    //   (data) => {
-    //     // right -> success (data)
-    //     debugPrint("data = ${data.customer?.name}")
-    //   },
-    // );
+    (await _loginUseCase.execute(
+      LoginUseCaseInput(
+        loginObject.username,
+        loginObject.password,
+      ),
+    ))
+        .fold(
+      (failure) => {
+        // left -> failure
+        debugPrint("failure = ${failure.message}")
+      },
+      (data) => {
+        // right -> success (data)
+        debugPrint("data = ${data.customer?.name}")
+      },
+    );
   }
 }
