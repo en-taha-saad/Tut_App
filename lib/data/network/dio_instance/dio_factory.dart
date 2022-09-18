@@ -15,10 +15,10 @@ class DioFactory {
 
     // ignore: no_leading_underscores_for_local_identifiers
     Map<String, String> headers = {
-      CONTENT_TYPE: APPLICATION_JSON,
-      ACCEPT: APPLICATION_JSON,
-      AUTHERIZATION: Constants.token,
-      DEFAULT_LANGUAGE: language, // todo change to get lang from app prefs
+      contentType: applicationJson,
+      accept: applicationJson,
+      authorization: Constants.token,
+      defaultLanguage: language, // todo change to get lang from app prefs
     };
     dio.options = BaseOptions(
       baseUrl: Constants.baseUrl,

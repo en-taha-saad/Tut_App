@@ -25,15 +25,15 @@ class RepositoryImpl implements Repository {
       // its connected to internet so we can call the api
       try {
         final response = await _remoteDataSource.login(loginRequest);
-        if (response.status == ApiInternalStatus.SUCCESS) {
+        if (response.status == ApiInternalStatus.success) {
           // success reutrn either right
           return Right(response.toDomain());
         } else {
           // failure return either left business error
           return Left(
             Failure(
-              ApiInternalStatus.FAILURE,
-              response.message ?? ResponseMessage.DEFAULT,
+              ApiInternalStatus.failure,
+              response.message ?? ResponseMessage.defaultError,
             ),
           );
         }
@@ -42,7 +42,7 @@ class RepositoryImpl implements Repository {
       }
     } else {
       // its not connected to internet so return a failure
-      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+      return Left(DataSource.noInternetConnection.getFailure());
     }
   }
 }

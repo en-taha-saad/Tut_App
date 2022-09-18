@@ -11,41 +11,41 @@ class ErrorHandler implements Exception {
       failure = _handleError(error);
     } else {
       // default error
-      failure = DataSource.DEFAULT.getFailure();
+      failure = DataSource.defaultError.getFailure();
     }
   }
 
   Failure _handleError(DioError error) {
     switch (error.type) {
       case DioErrorType.connectTimeout:
-        return DataSource.CONNECT_TIMEOUT.getFailure();
+        return DataSource.connectTimeout.getFailure();
       case DioErrorType.sendTimeout:
-        return DataSource.SEND_TIMEOUT.getFailure();
+        return DataSource.sendTimeout.getFailure();
       case DioErrorType.receiveTimeout:
-        return DataSource.RECIEVE_TIMEOUT.getFailure();
+        return DataSource.recieveTimeout.getFailure();
       case DioErrorType.response:
         return _handleResponseError(error);
       case DioErrorType.cancel:
-        return DataSource.CANCEL.getFailure();
+        return DataSource.cancel.getFailure();
       case DioErrorType.other:
-        return DataSource.DEFAULT.getFailure();
+        return DataSource.defaultError.getFailure();
     }
   }
 
   Failure _handleResponseError(DioError error) {
     switch (error.response!.statusCode) {
       case 400:
-        return DataSource.BAD_REQUEST.getFailure();
+        return DataSource.badRequest.getFailure();
       case 401:
-        return DataSource.UNAUTHORIZED.getFailure();
+        return DataSource.unauthorized.getFailure();
       case 403:
-        return DataSource.FORBIDDEN.getFailure();
+        return DataSource.forbidden.getFailure();
       case 404:
-        return DataSource.NOT_FOUND.getFailure();
+        return DataSource.notFound.getFailure();
       case 500:
-        return DataSource.INTERNAL_SERVER_ERROR.getFailure();
+        return DataSource.internalServerError.getFailure();
       default:
-        return DataSource.DEFAULT.getFailure();
+        return DataSource.defaultError.getFailure();
     }
   }
 }

@@ -6,75 +6,75 @@ import 'package:flutter_app/data/network/models/failure.dart';
 extension DataSourceExtension on DataSource {
   Failure getFailure() {
     switch (this) {
-      case DataSource.SUCCESS:
+      case DataSource.success:
         return Failure(
-          ResponseCode.SUCCESS,
-          ResponseMessage.SUCCESS,
+          ResponseCode.success,
+          ResponseMessage.success,
         );
-      case DataSource.NO_CONTENT:
+      case DataSource.noContent:
         return Failure(
-          ResponseCode.NO_CONTENT,
-          ResponseMessage.NO_CONTENT,
+          ResponseCode.noContent,
+          ResponseMessage.noContent,
         );
-      case DataSource.BAD_REQUEST:
+      case DataSource.badRequest:
         return Failure(
-          ResponseCode.BAD_REQUEST,
-          ResponseMessage.BAD_REQUEST,
+          ResponseCode.badRequest,
+          ResponseMessage.badRequest,
         );
-      case DataSource.UNAUTHORIZED:
+      case DataSource.unauthorized:
         return Failure(
-          ResponseCode.UNAUTHORIZED,
-          ResponseMessage.UNAUTHORIZED,
+          ResponseCode.unauthorized,
+          ResponseMessage.unauthorized,
         );
-      case DataSource.FORBIDDEN:
+      case DataSource.forbidden:
         return Failure(
-          ResponseCode.FORBIDDEN,
-          ResponseMessage.FORBIDDEN,
+          ResponseCode.forbidden,
+          ResponseMessage.forbidden,
         );
-      case DataSource.NOT_FOUND:
+      case DataSource.notFound:
         return Failure(
-          ResponseCode.NOT_FOUND,
-          ResponseMessage.NOT_FOUND,
+          ResponseCode.notFound,
+          ResponseMessage.notFound,
         );
-      case DataSource.INTERNAL_SERVER_ERROR:
+      case DataSource.internalServerError:
         return Failure(
-          ResponseCode.INTERNAL_SERVER_ERROR,
-          ResponseMessage.INTERNAL_SERVER_ERROR,
+          ResponseCode.internalServerError,
+          ResponseMessage.internalServerError,
         );
-      case DataSource.CONNECT_TIMEOUT:
+      case DataSource.connectTimeout:
         return Failure(
-          ResponseCode.CONNECT_TIMEOUT,
-          ResponseMessage.CONNECT_TIMEOUT,
+          ResponseCode.connectTimeout,
+          ResponseMessage.connectTimeout,
         );
-      case DataSource.CANCEL:
+      case DataSource.cancel:
         return Failure(
-          ResponseCode.CANCEL,
-          ResponseMessage.CANCEL,
+          ResponseCode.cancel,
+          ResponseMessage.cancel,
         );
-      case DataSource.RECIEVE_TIMEOUT:
+      case DataSource.recieveTimeout:
         return Failure(
-          ResponseCode.RECIEVE_TIMEOUT,
-          ResponseMessage.RECIEVE_TIMEOUT,
+          ResponseCode.recieveTimeout,
+          ResponseMessage.recieveTimeout,
         );
-      case DataSource.SEND_TIMEOUT:
+      case DataSource.sendTimeout:
         return Failure(
-          ResponseCode.SEND_TIMEOUT,
-          ResponseMessage.SEND_TIMEOUT,
+          ResponseCode.sendTimeout,
+          ResponseMessage.sendTimeout,
         );
-      case DataSource.CACHE_ERROR:
+      case DataSource.cacheError:
         return Failure(
-          ResponseCode.CACHE_ERROR,
-          ResponseMessage.CACHE_ERROR,
+          ResponseCode.cacheError,
+          ResponseMessage.cacheError,
         );
-      case DataSource.NO_INTERNET_CONNECTION:
+      case DataSource.noInternetConnection:
         return Failure(
-          ResponseCode.NO_INTERNET_CONNECTION,
-          ResponseMessage.NO_INTERNET_CONNECTION,
+          ResponseCode.noInternetConnection,
+          ResponseMessage.noInternetConnection,
         );
-      case DataSource.DEFAULT:
+      case DataSource.defaultError:
         return Failure(
-          ResponseCode.DEFAULT,
-          ResponseMessage.DEFAULT,
+          ResponseCode.defaultError,
+          ResponseMessage.defaultError,
         );
     }
   }
