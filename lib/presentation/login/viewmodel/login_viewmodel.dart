@@ -117,6 +117,7 @@ class LoginViewModel extends BaseViewModel
         // right -> success (data)
         inputState.add(ContentState());
         isUserLoggedinSuccessfullyStreamController.add(true);
+ 
         debugPrint("data = ${data.customer?.name}");
       },
     );

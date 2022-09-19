@@ -1,3 +1,5 @@
+import 'package:flutter_app/app/app_prefs.dart';
+import 'package:flutter_app/app/dependency_injections/init_app_module.dart';
 import 'package:flutter_app/domain/models/onboarding/sliderobject.dart';
 import 'package:flutter_app/domain/models/onboarding/sliderviewobject.dart';
 import 'package:flutter_app/presentation/onboarding/viewmodel/onboarding_viewmodel.dart';
@@ -22,9 +24,13 @@ class OnBoardingView extends StatefulWidget {
 }
 
 class _OnBoardingViewState extends State<OnBoardingView> {
-  final OnBoardingViewModel _viewModel = OnBoardingViewModel();
+  final OnBoardingViewModel _viewModel = instance<OnBoardingViewModel>();
+  final AppPreferences _appPrefs = instance<AppPreferences>();
 
-  _bind() => _viewModel.start();
+  _bind() {
+    _appPrefs.setOnboardingScreenViewed();
+    _viewModel.start();
+  }
 
   @override
   void initState() {
