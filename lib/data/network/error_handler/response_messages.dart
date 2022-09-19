@@ -10,8 +10,7 @@ class ResponseMessage {
       "Forbidden request, Try again later"; //  failure, API rejected request
   static const String internalServerError =
       "Some thing went wrong, Try again later"; // failure, crash in server side
-  static const String notFound =
-      "Some thing went wrong, Try again later"; // failure, crash in server side
+  static const String notFound = "Not Found"; // failure, crash in server side
 
   // local status code
   static const String connectTimeout = "Time out error, Try again later";

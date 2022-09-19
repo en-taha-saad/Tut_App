@@ -41,37 +41,43 @@ extension FlowStateExtension on FlowState {
         );
 
       case ErrorState:
-        dismissDialog(context);
-        if (getStateRendererType() == StateRendererType.popupErrorState) {
-          // show popup error
-          showPopup(
-            context,
-            getStateRendererType(),
-            getMessage(),
-          );
-          // show content screen
-          return contentScreenWidget;
-        } else {
-          // show full screen error
-          return StateRenderer(
-            stateRendererType: getStateRendererType(),
-            message: getMessage(),
-            retryActionFunction: retryActionFunction,
-          );
+        {
+          dismissDialog(context);
+          if (getStateRendererType() == StateRendererType.popupErrorState) {
+            // show popup error
+            showPopup(
+              context,
+              getStateRendererType(),
+              getMessage(),
+            );
+            // show content screen
+            return contentScreenWidget;
+          } else {
+            // show full screen error
+            return StateRenderer(
+              stateRendererType: getStateRendererType(),
+              message: getMessage(),
+              retryActionFunction: retryActionFunction,
+            );
+          }
         }
       case ContentState:
-        // show full screen content
-        dismissDialog(context);
-        return contentScreenWidget;
+        {
+          // show full screen content
+          dismissDialog(context);
+          return contentScreenWidget;
+        }
       default:
-        // show full screen content
-        dismissDialog(context);
-        return contentScreenWidget;
+        {
+          // show full screen content
+          dismissDialog(context);
+          return contentScreenWidget;
+        }
     }
   }
 
   _isCurrentDialogShowing(BuildContext context) =>
-      ModalRoute.of(context)?.isCurrent;
+      ModalRoute.of(context)?.isCurrent != true;
 
   dismissDialog(BuildContext context) {
     if (_isCurrentDialogShowing(context)) {
