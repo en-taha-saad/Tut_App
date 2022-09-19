@@ -25,12 +25,15 @@ class _SplashViewState extends State<SplashView> {
   _goNext() async {
     _appPrefs.isUserLoggedIn().then((isUserLoggedIn) {
       if (isUserLoggedIn) {
+        // navigate to home
         Navigator.pushReplacementNamed(context, Routes.mainRoute);
       } else {
         _appPrefs.isOnboardingScreenViewed().then((isOnboardingScreenViewed) {
           if (isOnboardingScreenViewed) {
+            // navigate to login
             Navigator.pushReplacementNamed(context, Routes.loginRoute);
           } else {
+            // navigate to onboarding
             Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
           }
         });
