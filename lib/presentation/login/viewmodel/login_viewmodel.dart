@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_app/domain/usecase/login_usecase/login_usecase.dart';
 import 'package:flutter_app/domain/usecase/login_usecase/login_usecase_input.dart';
-import 'package:flutter_app/presentation/base/baseviewmodel.dart';
+import 'package:flutter_app/presentation/base/base_viewmodel.dart';
 import 'package:flutter_app/presentation/common/freezed_data_classes.dart';
 import 'package:flutter_app/presentation/common/state_render/states/content_state.dart';
 import 'package:flutter_app/presentation/common/state_render/states/error_state.dart';

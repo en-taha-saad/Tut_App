@@ -7,7 +7,7 @@ import 'package:flutter_app/presentation/onboarding/viewmodel/onboarding_viewmod
 import 'package:flutter_app/presentation/resources/other_managers/assets_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/strings_manager.dart';
 
-import '../../base/baseviewmodel.dart';
+import '../../base/base_viewmodel.dart';
 
 class OnBoardingViewModel extends BaseViewModel
     with OnBoardingViewModelInputs, OnBoardingViewModelOutputs {
