@@ -8,6 +8,7 @@ import 'package:flutter_app/presentation/common/freezed_data_classes.dart';
 import 'package:flutter_app/presentation/common/state_render/states/content_state.dart';
 import 'package:flutter_app/presentation/common/state_render/states/error_state.dart';
 import 'package:flutter_app/presentation/common/state_render/states/loading_state.dart';
+import 'package:flutter_app/presentation/common/state_render/states/state_renderer_type.dart';
 import 'package:flutter_app/presentation/login/viewmodel/login_viewmodel_inputs.dart';
 import 'package:flutter_app/presentation/login/viewmodel/login_viewmodel_outputs.dart';
 
@@ -28,7 +29,7 @@ class LoginViewModel extends BaseViewModel
   @override
   void start() {
     // view model should tell view, please show content state
-    inputState.add(ContentState);
+    inputState.add(ContentState());
   }
 
   // stream controllers outputs
@@ -88,7 +89,9 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
-    inputState.add(LoadingState);
+    inputState.add(
+      LoadingState(stateRendererType: StateRendererType.popupLoadingState),
+    );
     (await _loginUseCase.execute(LoginUseCaseInput(
       loginObject.username,
       loginObject.password,
@@ -96,12 +99,17 @@ class LoginViewModel extends BaseViewModel
         .fold(
       (failure) {
         // left -> failure
-        inputState.add(ErrorState);
+        inputState.add(
+          ErrorState(
+            StateRendererType.popupErrorState,
+            failure.message,
+          ),
+        );
         debugPrint("failure = ${failure.message}");
       },
       (data) {
         // right -> success (data)
-        inputState.add(ContentState);
+        inputState.add(ContentState());
         debugPrint("data = ${data.customer?.name}");
       },
     );

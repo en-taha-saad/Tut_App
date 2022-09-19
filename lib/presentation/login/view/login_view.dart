@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/dependency_injections/init_app_module.dart';
+import 'package:flutter_app/presentation/common/state_render/states/flow_state.dart';
+import 'package:flutter_app/presentation/common/state_render/states/flow_state_extension.dart';
 import 'package:flutter_app/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:flutter_app/presentation/resources/other_managers/assets_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/color_manager.dart';
@@ -49,7 +51,19 @@ class _LoginViewState extends State<LoginView> {
   }
 
   @override
-  Widget build(BuildContext context) => _getContentWidget();
+  Widget build(BuildContext context) {
+    return StreamBuilder<FlowState>(
+      stream: _viewModel.outputState,
+      builder: (context, AsyncSnapshot<FlowState> snapshot) {
+        return snapshot.data?.getScreenWidget(
+              context,
+              _getContentWidget(),
+              () {},
+            ) ??
+            _getContentWidget();
+      },
+    );
+  }
 
   Widget _getContentWidget() {
     return Scaffold(
