@@ -21,6 +21,7 @@ class OnBoardingViewModel extends BaseViewModel
   //OnBoarding ViewModel Inputs
   @override
   void dispose() {
+    super.dispose();
     _streamController.close();
   }
 

@@ -5,6 +5,9 @@ import 'package:flutter_app/domain/usecase/login_usecase/login_usecase.dart';
 import 'package:flutter_app/domain/usecase/login_usecase/login_usecase_input.dart';
 import 'package:flutter_app/presentation/base/baseviewmodel.dart';
 import 'package:flutter_app/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_app/presentation/common/state_render/states/content_state.dart';
+import 'package:flutter_app/presentation/common/state_render/states/error_state.dart';
+import 'package:flutter_app/presentation/common/state_render/states/loading_state.dart';
 import 'package:flutter_app/presentation/login/viewmodel/login_viewmodel_inputs.dart';
 import 'package:flutter_app/presentation/login/viewmodel/login_viewmodel_outputs.dart';
 
@@ -16,13 +19,17 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void dispose() {
+    super.dispose();
     _userNameController.close();
     _passwordController.close();
     _areAllInputsValidStreamController.close();
   }
 
   @override
-  void start() {}
+  void start() {
+    // view model should tell view, please show content state
+    inputState.add(ContentState);
+  }
 
   // stream controllers outputs
   final StreamController _userNameController =
@@ -81,20 +88,21 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
-    (await _loginUseCase.execute(
-      LoginUseCaseInput(
-        loginObject.username,
-        loginObject.password,
-      ),
-    ))
+    inputState.add(LoadingState);
+    (await _loginUseCase.execute(LoginUseCaseInput(
+      loginObject.username,
+      loginObject.password,
+    )))
         .fold(
-      (failure) => {
+      (failure) {
         // left -> failure
-        debugPrint("failure = ${failure.message}")
+        inputState.add(ErrorState);
+        debugPrint("failure = ${failure.message}");
       },
-      (data) => {
+      (data) {
         // right -> success (data)
-        debugPrint("data = ${data.customer?.name}")
+        inputState.add(ContentState);
+        debugPrint("data = ${data.customer?.name}");
       },
     );
   }
