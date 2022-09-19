@@ -24,6 +24,7 @@ class LoginViewModel extends BaseViewModel
     _userNameController.close();
     _passwordController.close();
     _areAllInputsValidStreamController.close();
+    isUserLoggedinSuccessfullyStreamController.close();
   }
 
   @override
@@ -73,6 +74,9 @@ class LoginViewModel extends BaseViewModel
     );
   }
 
+  final StreamController isUserLoggedinSuccessfullyStreamController =
+      StreamController<bool>();
+
   @override
   setUsername(String username) {
     inputUsername.add(username);
@@ -112,6 +116,7 @@ class LoginViewModel extends BaseViewModel
       (data) {
         // right -> success (data)
         inputState.add(ContentState());
+        isUserLoggedinSuccessfullyStreamController.add(true);
         debugPrint("data = ${data.customer?.name}");
       },
     );
