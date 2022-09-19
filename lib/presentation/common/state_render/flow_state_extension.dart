@@ -33,22 +33,54 @@ extension FlowStateExtension on FlowState {
           );
         }
       case EmptyState:
-        break;
+        // show full screen empty
+        return StateRenderer(
+          stateRendererType: getStateRendererType(),
+          message: getMessage(),
+          retryActionFunction: () {},
+        );
+
       case ErrorState:
-        break;
+        dismissDialog(context);
+        if (getStateRendererType() == StateRendererType.popupErrorState) {
+          // show popup error
+          showPopup(
+            context,
+            getStateRendererType(),
+            getMessage(),
+          );
+          // show content screen
+          return contentScreenWidget;
+        } else {
+          // show full screen error
+          return StateRenderer(
+            stateRendererType: getStateRendererType(),
+            message: getMessage(),
+            retryActionFunction: retryActionFunction,
+          );
+        }
       case ContentState:
-        break;
+        // show full screen content
+        dismissDialog(context);
+        return contentScreenWidget;
       default:
-        break;
+        // show full screen content
+        dismissDialog(context);
+        return contentScreenWidget;
     }
-    return Container();
   }
 
-  showPopup(
-    BuildContext context,
-    StateRendererType stateRendererType,
-    String message,
-  ) {
+  _isCurrentDialogShowing(BuildContext context) =>
+      ModalRoute.of(context)?.isCurrent;
+
+  dismissDialog(BuildContext context) {
+    if (_isCurrentDialogShowing(context)) {
+      Navigator.of(context, rootNavigator: true).pop(true);
+    }
+  }
+
+  showPopup(BuildContext context, StateRendererType stateRendererType,
+      String message) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         showDialog(
