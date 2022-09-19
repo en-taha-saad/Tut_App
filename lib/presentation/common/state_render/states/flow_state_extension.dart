@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/presentation/common/state_render/content_state.dart';
-import 'package:flutter_app/presentation/common/state_render/empty_state.dart';
-import 'package:flutter_app/presentation/common/state_render/error_state.dart';
-import 'package:flutter_app/presentation/common/state_render/flow_state.dart';
-import 'package:flutter_app/presentation/common/state_render/loading_state.dart';
+import 'package:flutter_app/presentation/common/state_render/states/content_state.dart';
+import 'package:flutter_app/presentation/common/state_render/states/empty_state.dart';
+import 'package:flutter_app/presentation/common/state_render/states/error_state.dart';
+import 'package:flutter_app/presentation/common/state_render/states/flow_state.dart';
+import 'package:flutter_app/presentation/common/state_render/states/loading_state.dart';
 import 'package:flutter_app/presentation/common/state_render/state_renderer.dart';
-import 'package:flutter_app/presentation/common/state_render/state_renderer_type.dart';
+import 'package:flutter_app/presentation/common/state_render/states/state_renderer_type.dart';
 
 extension FlowStateExtension on FlowState {
   Widget getScreenWidget(

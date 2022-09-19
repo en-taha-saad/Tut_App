@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/presentation/common/state_render/state_renderer_type.dart';
+import 'package:flutter_app/presentation/common/state_render/states/state_renderer_type.dart';
 import 'package:flutter_app/presentation/resources/other_managers/assets_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/color_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/strings_manager.dart';

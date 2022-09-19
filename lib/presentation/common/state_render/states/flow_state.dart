@@ -1,4 +1,4 @@
-import 'package:flutter_app/presentation/common/state_render/state_renderer_type.dart';
+import 'package:flutter_app/presentation/common/state_render/states/state_renderer_type.dart';
 
 abstract class FlowState {
   StateRendererType getStateRendererType();
