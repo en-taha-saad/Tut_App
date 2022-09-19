@@ -2,7 +2,7 @@
 
 // ignore_for_file: unused_element
 
-part of 'responses.dart';
+part of 'login_responses.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

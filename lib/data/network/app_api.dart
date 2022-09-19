@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app/app/constants.dart';
-import 'package:flutter_app/data/responses/responses.dart';
+import 'package:flutter_app/data/responses/login_responses/login_responses.dart';
 import 'package:retrofit/http.dart';
 part 'app_api.g.dart';
 
