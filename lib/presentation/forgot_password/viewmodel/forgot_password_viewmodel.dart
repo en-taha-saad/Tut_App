@@ -69,8 +69,9 @@ class ForgotPasswordViewModel extends BaseViewModel
   bool _isUsernameValid(String email) => email.isNotEmpty;
   @override
   setEmail(String email) {
-    forgotPasswordObject = forgotPasswordObject.copyWith(email: email);
     inputEmail.add(email);
+    forgotPasswordObject = forgotPasswordObject.copyWith(email: email);
+    inputAreSentVerification.add(null);
   }
 
   @override
