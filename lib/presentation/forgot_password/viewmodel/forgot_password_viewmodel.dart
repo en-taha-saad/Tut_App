@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_app/domain/usecase/forgot_password_usecase/forgot_password_usecase.dart';
+import 'package:flutter_app/domain/usecase/forgot_password_usecase/forgot_password_usecase_input.dart';
 import 'package:flutter_app/presentation/common/freezed_data_classes.dart';
 import 'package:flutter_app/presentation/forgot_password/viewmodel/forgot_password_viewmodel_inputs.dart';
 import 'package:flutter_app/presentation/forgot_password/viewmodel/forgot_password_viewmodel_outputs.dart';
@@ -21,38 +23,34 @@ class ForgotPasswordViewModel extends BaseViewModel
   }
 
   @override
-  forgotPassword() {
-    //     inputState.add(
+  forgotPassword() async {
+    // inputState.add(
     //   LoadingState(stateRendererType: StateRendererType.popupLoadingState),
     // );
-    // (await _forgotPasswordUseCase.execute(
-    //   LoginUseCaseInput(
-    //     loginObject.username,
-    //     loginObject.password,
-    //   ),
-    // ))
-    //     .fold(
-    //   (failure) {
-    //     // left -> failure
-    //     inputState.add(
-    //       ErrorState(
-    //         StateRendererType.popupErrorState,
-    //         failure.message,
-    //       ),
-    //     );
-    //     debugPrint("failure = ${failure.message}");
-    //   },
-    //   (data) {
-    //     // right -> success (data)
-    //     inputState.add(ContentState());
-    //     isUserLoggedinSuccessfullyStreamController.add(true);
-    //     debugPrint("data = ${data.customer?.name}");
-    //   },
-    // );
-    // }
+    (await _forgotPasswordUseCase.execute(
+      ForgotPasswordUseCaseInput(forgotPasswordObject.email),
+    ))
+        .fold(
+      (failure) {
+        // left -> failure
+        // inputState.add(
+        //   ErrorState(
+        //     StateRendererType.popupErrorState,
+        //     failure.message,
+        //   ),
+        // );
+        debugPrint("failure = ${failure.message}");
+      },
+      (data) {
+        // right -> success (data)
+        // inputState.add(ContentState());
+        debugPrint("data = ${data.message}");
+      },
+    );
   }
+
   @override
-  resendVerification() => throw UnimplementedError();
+  resendVerification() => forgotPassword();
 
   // email
   final StreamController _emailController =
