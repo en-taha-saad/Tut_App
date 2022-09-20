@@ -1,16 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: unused_element
+
 part of 'login_responses.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-BaseResponse _$BaseResponseFromJson(Map<String, dynamic> json) => BaseResponse()
-  ..status = json['status'] as int?
-  ..message = json['message'] as String?;
+BaseLoginResponse _$BaseLoginResponseFromJson(Map<String, dynamic> json) =>
+    BaseLoginResponse()
+      ..status = json['status'] as int?
+      ..message = json['message'] as String?;
 
-Map<String, dynamic> _$BaseResponseToJson(BaseResponse instance) =>
+Map<String, dynamic> _$BaseLoginResponseToJson(BaseLoginResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,

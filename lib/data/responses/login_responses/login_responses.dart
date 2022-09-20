@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'login_responses.g.dart';
 
 @JsonSerializable()
-class BaseResponse {
+class BaseLoginResponse {
   @JsonKey(name: 'status')
   int? status;
   @JsonKey(name: 'message')
@@ -40,7 +40,7 @@ class ContactsResponse {
 }
 
 @JsonSerializable()
-class AuthenticationResponse extends BaseResponse {
+class AuthenticationResponse extends BaseLoginResponse {
   @JsonKey(name: 'customer')
   CustomerResponse? customer;
   @JsonKey(name: 'contacts')
