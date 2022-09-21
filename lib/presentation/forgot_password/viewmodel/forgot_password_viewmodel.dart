@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_app/app/functions.dart';
 import 'package:flutter_app/domain/usecase/forgot_password_usecase/forgot_password_usecase.dart';
-import 'package:flutter_app/domain/usecase/forgot_password_usecase/forgot_password_usecase_input.dart';
-import 'package:flutter_app/presentation/common/freezed_data_classes.dart';
 import 'package:flutter_app/presentation/common/state_render/states/content_state.dart';
 import 'package:flutter_app/presentation/common/state_render/states/error_state.dart';
 import 'package:flutter_app/presentation/common/state_render/states/loading_state.dart';
@@ -16,7 +14,7 @@ class ForgotPasswordViewModel extends BaseViewModel
     with ForgotPasswordViewModelInputs, ForgotPasswordViewModelOutputs {
   final ForgotPasswordUseCase _forgotPasswordUseCase;
   ForgotPasswordViewModel(this._forgotPasswordUseCase);
-  var forgotPasswordObject = ForgotPasswordObject("");
+  var email = "";
 
   @override
   void start() {
@@ -36,10 +34,7 @@ class ForgotPasswordViewModel extends BaseViewModel
     inputState.add(
       LoadingState(stateRendererType: StateRendererType.popupLoadingState),
     );
-    (await _forgotPasswordUseCase.execute(
-      ForgotPasswordUseCaseInput(forgotPasswordObject.email),
-    ))
-        .fold(
+    (await _forgotPasswordUseCase.execute(email)).fold(
       (failure) {
         // left -> failure
         inputState.add(
@@ -48,12 +43,12 @@ class ForgotPasswordViewModel extends BaseViewModel
             failure.message,
           ),
         );
-        debugPrint("failure = ${failure.message}");
+        _areSentVerificationStreamController.add(true);
       },
       (data) {
         // right -> success (data)
         inputState.add(ContentState());
-        debugPrint("data = ${data.message}");
+        _areSentVerificationStreamController.add(false);
       },
     );
   }
@@ -66,17 +61,16 @@ class ForgotPasswordViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   @override
   Sink get inputEmail => _emailController.sink;
-  bool _isUsernameValid(String email) => email.isNotEmpty;
   @override
   setEmail(String email) {
     inputEmail.add(email);
-    forgotPasswordObject = forgotPasswordObject.copyWith(email: email);
+    this.email = email;
     inputAreSentVerification.add(null);
   }
 
   @override
   Stream<bool> get outputIsEmailValid => _emailController.stream.map(
-        (email) => _isUsernameValid(email),
+        (email) => isEmailValid(email),
       );
 
   // areSentVerification
@@ -85,10 +79,7 @@ class ForgotPasswordViewModel extends BaseViewModel
   @override
   Sink get inputAreSentVerification =>
       _areSentVerificationStreamController.sink;
-  bool _areAllInputsValid() => _isUsernameValid(forgotPasswordObject.email);
   @override
   Stream<bool> get outputAreSentVerification =>
-      _areSentVerificationStreamController.stream.map(
-        (_) => _areAllInputsValid(),
-      );
+      _areSentVerificationStreamController.stream.map((_) => _);
 }

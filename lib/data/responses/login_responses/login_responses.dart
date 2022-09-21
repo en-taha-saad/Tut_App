@@ -1,14 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
+import 'package:flutter_app/data/responses/base_response.dart';
 part 'login_responses.g.dart';
-
-@JsonSerializable()
-class BaseLoginResponse {
-  @JsonKey(name: 'status')
-  int? status;
-  @JsonKey(name: 'message')
-  String? message;
-}
 
 @JsonSerializable()
 class CustomerResponse {
@@ -40,7 +33,7 @@ class ContactsResponse {
 }
 
 @JsonSerializable()
-class AuthenticationResponse extends BaseLoginResponse {
+class AuthenticationResponse extends BaseResponse {
   @JsonKey(name: 'customer')
   CustomerResponse? customer;
   @JsonKey(name: 'contacts')

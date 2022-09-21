@@ -22,7 +22,7 @@ class AppStrings {
   static const passwordError = "Please enter your password";
   static const login = "Login";
   static const resetPassword = "Reset Password";
-  static const resendAuthentication = "Didn’t recieve email ? Resesnd";
+  static const resendVerification = "Didn’t recieve email ? Resesnd";
   static const forgetPassword = "Forget password";
   static const registerText = "Not a member ? Sign up";
   static const loading = "Loading...";

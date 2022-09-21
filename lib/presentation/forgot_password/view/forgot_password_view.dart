@@ -6,7 +6,6 @@ import 'package:flutter_app/presentation/common/state_render/states/flow_state_e
 import 'package:flutter_app/presentation/resources/other_managers/assets_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/color_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/strings_manager.dart';
-import 'package:flutter_app/presentation/resources/routes_manager/routes.dart';
 import 'package:flutter_app/presentation/resources/values_manager/app_padding.dart';
 import 'package:flutter_app/presentation/resources/values_manager/app_size.dart';
 
@@ -63,6 +62,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   Widget _getContentWidget() {
     return Scaffold(
       backgroundColor: ColorManager.white,
+      appBar: AppBar(),
       body: Container(
         padding: const EdgeInsets.only(top: AppPadding.p100),
         child: SingleChildScrollView(
@@ -135,11 +135,13 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                         builder: (context, snapshot) {
                           return TextButton(
                             onPressed: (snapshot.data ?? false)
-                                ? () => _viewModel.forgotPassword()
+                                ? () => _viewModel.resendVerification()
                                 : null,
                             child: Text(
-                              AppStrings.resendAuthentication,
-                              style: Theme.of(context).textTheme.titleMedium,
+                              AppStrings.resendVerification,
+                              style: (snapshot.data ?? false)
+                                  ? Theme.of(context).textTheme.titleMedium
+                                  : Theme.of(context).textTheme.bodyLarge,
                             ),
                           );
                         },

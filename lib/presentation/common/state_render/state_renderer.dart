@@ -38,7 +38,7 @@ class StateRenderer extends StatelessWidget {
           [
             _getAnimatedImage(JsonAssets.error),
             _getMessage(message),
-            _getRetryButton(AppStrings.ok, context)
+            _getRetryButton(AppStrings.ok, context),
           ],
         );
       case StateRendererType.fullScreenLoadingState:
@@ -56,6 +56,7 @@ class StateRenderer extends StatelessWidget {
         return _getItemsColumn([
           _getAnimatedImage(JsonAssets.empty),
           _getMessage(message),
+          _getRetryButton(AppStrings.retryAgain, context)
         ]);
       case StateRendererType.contentState:
         return Container();

@@ -37,7 +37,7 @@ extension FlowStateExtension on FlowState {
         return StateRenderer(
           stateRendererType: getStateRendererType(),
           message: getMessage(),
-          retryActionFunction: () {},
+          retryActionFunction: retryActionFunction,
         );
 
       case ErrorState:

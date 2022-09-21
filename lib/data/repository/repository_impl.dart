@@ -7,8 +7,6 @@ import 'package:flutter_app/data/network/error_handler/datasource_extension.dart
 import 'package:flutter_app/data/network/error_handler/error_handler.dart';
 import 'package:flutter_app/data/network/error_handler/response_messages.dart';
 import 'package:flutter_app/data/network/internet_checker/network_info.dart';
-import 'package:flutter_app/data/network/models/forgot_password_request.dart';
-import 'package:flutter_app/domain/models/forgot_password/forgot_password.dart';
 import 'package:flutter_app/domain/models/login/authentication.dart';
 import 'package:flutter_app/data/network/models/loginrequest.dart';
 import 'package:flutter_app/data/network/models/failure.dart';
@@ -50,14 +48,11 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, ForgotPassword>> forgotPassword(
-      ForgotPasswordRequest forgotPasswordRequest) async {
+  Future<Either<Failure, String>> forgotPassword(String email) async {
     if (await _networkInfo.isConnected) {
       // its connected to internet so we can call the api
       try {
-        final response = await _remoteDataSource.forgotPassword(
-          forgotPasswordRequest,
-        );
+        final response = await _remoteDataSource.forgotPassword(email);
         if (response.status == ApiInternalStatus.success) {
           // success reutrn either right
           return Right(response.toDomain());
