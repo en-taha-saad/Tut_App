@@ -1,8 +1,7 @@
 import 'package:flutter_app/data/data_sources/remote/remote_data_source.dart';
 import 'package:flutter_app/data/network/app_api.dart';
 import 'package:flutter_app/data/network/models/loginrequest.dart';
-import 'package:flutter_app/data/responses/forget_password_responses/forget_password_responses.dart';
-import 'package:flutter_app/data/responses/login_responses/login_responses.dart';
+import 'package:flutter_app/data/responses/responses.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final AppServiceClient _appServiceClient;
@@ -18,6 +17,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<ForgotPasswordResponse> forgotPassword(String email) async {
-    return await _appServiceClient.forgetPassword(email);
+    return await _appServiceClient.forgotPassword(email);
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_app/app/functions.dart';
 import 'package:flutter_app/domain/usecase/forgot_password_usecase/forgot_password_usecase.dart';
 import 'package:flutter_app/presentation/common/state_render/states/content_state.dart';

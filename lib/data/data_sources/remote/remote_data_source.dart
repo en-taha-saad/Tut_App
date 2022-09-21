@@ -1,6 +1,5 @@
 import 'package:flutter_app/data/network/models/loginrequest.dart';
-import 'package:flutter_app/data/responses/forget_password_responses/forget_password_responses.dart';
-import 'package:flutter_app/data/responses/login_responses/login_responses.dart';
+import 'package:flutter_app/data/responses/responses.dart';
 
 abstract class RemoteDataSource {
   Future<AuthenticationResponse> login(LoginRequest loginRequest);

@@ -53,7 +53,7 @@ class RepositoryImpl implements Repository {
       // its connected to internet so we can call the api
       try {
         final response = await _remoteDataSource.forgotPassword(email);
-        if (response.status == 0) {
+        if (response.status == ApiInternalStatus.success) {
           // success reutrn either right
 
           return Right(response.toDomain());
@@ -67,7 +67,6 @@ class RepositoryImpl implements Repository {
           );
         }
       } catch (error) {
-        print("error = $error");
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {

@@ -10,7 +10,7 @@ part of 'app_api.dart';
 
 class _AppServiceClient implements AppServiceClient {
   _AppServiceClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://tahasaad96.mocklab.io';
+    baseUrl ??= 'http://tahasaad96.mocklab.io';
   }
 
   final Dio _dio;
@@ -34,7 +34,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<ForgotPasswordResponse> forgetPassword(email) async {
+  Future<ForgotPasswordResponse> forgotPassword(email) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
