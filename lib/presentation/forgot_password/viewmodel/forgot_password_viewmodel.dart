@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_app/app/functions.dart';
 import 'package:flutter_app/domain/usecase/forgot_password_usecase/forgot_password_usecase.dart';
 import 'package:flutter_app/presentation/common/state_render/states/content_state.dart';
@@ -43,12 +44,12 @@ class ForgotPasswordViewModel extends BaseViewModel
             failure.message,
           ),
         );
-        _areSentVerificationStreamController.add(true);
+        // _areSentVerificationStreamController.add(true);
       },
-      (data) {
+      (supportMessage) {
         // right -> success (data)
         inputState.add(ContentState());
-        _areSentVerificationStreamController.add(false);
+        // _areSentVerificationStreamController.add(false);
       },
     );
   }

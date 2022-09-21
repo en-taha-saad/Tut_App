@@ -1,7 +1,14 @@
 // ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
-import 'package:flutter_app/data/responses/base_response.dart';
 part 'forget_password_responses.g.dart';
+
+@JsonSerializable()
+class BaseResponse {
+  @JsonKey(name: 'status')
+  int? status;
+  @JsonKey(name: 'message')
+  String? message;
+}
 
 @JsonSerializable()
 class ForgotPasswordResponse extends BaseResponse {
@@ -10,8 +17,9 @@ class ForgotPasswordResponse extends BaseResponse {
 
   ForgotPasswordResponse(this.support);
 
-  factory ForgotPasswordResponse.fromJson(Map<String, dynamic> json) =>
-      _$ForgotPasswordResponseFromJson(json);
-
+  factory ForgotPasswordResponse.fromJson(Map<String, dynamic> json) {
+    print("ForgotPasswordResponseFromJson(json) = $json");
+    return _$ForgotPasswordResponseFromJson(json);
+  }
   Map<String, dynamic> toJson() => _$ForgotPasswordResponseToJson(this);
 }
