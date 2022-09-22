@@ -6,6 +6,7 @@ import 'package:flutter_app/presentation/common/state_render/states/flow_state.d
 import 'package:flutter_app/presentation/common/state_render/states/loading_state.dart';
 import 'package:flutter_app/presentation/common/state_render/state_renderer.dart';
 import 'package:flutter_app/presentation/common/state_render/states/state_renderer_type.dart';
+import 'package:flutter_app/presentation/common/state_render/states/success_state.dart';
 
 extension FlowStateExtension on FlowState {
   Widget getScreenWidget(
@@ -44,6 +45,27 @@ extension FlowStateExtension on FlowState {
         {
           dismissDialog(context);
           if (getStateRendererType() == StateRendererType.popupErrorState) {
+            // show popup error
+            showPopup(
+              context,
+              getStateRendererType(),
+              getMessage(),
+            );
+            // show content screen
+            return contentScreenWidget;
+          } else {
+            // show full screen error
+            return StateRenderer(
+              stateRendererType: getStateRendererType(),
+              message: getMessage(),
+              retryActionFunction: retryActionFunction,
+            );
+          }
+        }
+      case SuccessState:
+        {
+          dismissDialog(context);
+          if (getStateRendererType() == StateRendererType.popupSuccessState) {
             // show popup error
             showPopup(
               context,

@@ -6,6 +6,7 @@ import 'package:flutter_app/presentation/common/state_render/states/content_stat
 import 'package:flutter_app/presentation/common/state_render/states/error_state.dart';
 import 'package:flutter_app/presentation/common/state_render/states/loading_state.dart';
 import 'package:flutter_app/presentation/common/state_render/states/state_renderer_type.dart';
+import 'package:flutter_app/presentation/common/state_render/states/success_state.dart';
 import 'package:flutter_app/presentation/forgot_password/viewmodel/forgot_password_viewmodel_inputs.dart';
 import 'package:flutter_app/presentation/forgot_password/viewmodel/forgot_password_viewmodel_outputs.dart';
 import '../../base/base_viewmodel.dart';
@@ -47,7 +48,12 @@ class ForgotPasswordViewModel extends BaseViewModel
       },
       (supportMessage) {
         // right -> success (data)
-        inputState.add(ContentState());
+        inputState.add(
+          SuccessState(
+            StateRendererType.popupSuccessState,
+            supportMessage,
+          ),
+        );
         // _areSentVerificationStreamController.add(false);
       },
     );
