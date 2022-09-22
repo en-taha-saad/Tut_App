@@ -5,17 +5,22 @@ import 'package:flutter_app/presentation/resources/fonts_manager/fontweight_mana
 
 TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color) {
   return TextStyle(
-      fontSize: fontSize,
-      fontFamily: FontConstants.fontFamily,
-      color: color,
-      fontWeight: fontWeight);
+    fontSize: fontSize,
+    fontFamily: FontConstants.fontFamily,
+    color: color,
+    fontWeight: fontWeight,
+  );
 }
 
 // regular style
 
 TextStyle getRegularStyle(
     {double fontSize = FontSize.s12, required Color color}) {
-  return _getTextStyle(fontSize, FontWeightManager.regular, color);
+  return _getTextStyle(
+    fontSize,
+    FontWeightManager.regular,
+    color,
+  );
 }
 
 // medium style

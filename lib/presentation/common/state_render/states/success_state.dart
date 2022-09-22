@@ -10,5 +10,5 @@ class SuccessState extends FlowState {
   StateRendererType getStateRendererType() => stateRendererType;
 
   @override
-  String getMessage() => message;
+  String getMessage() => "Success\n$message";
 }
