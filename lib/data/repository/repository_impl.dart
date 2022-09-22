@@ -7,6 +7,7 @@ import 'package:flutter_app/data/network/error_handler/datasource_extension.dart
 import 'package:flutter_app/data/network/error_handler/error_handler.dart';
 import 'package:flutter_app/data/network/error_handler/response_messages.dart';
 import 'package:flutter_app/data/network/internet_checker/network_info.dart';
+import 'package:flutter_app/data/network/models/register_request.dart';
 import 'package:flutter_app/domain/models/login/authentication.dart';
 import 'package:flutter_app/data/network/models/loginrequest.dart';
 import 'package:flutter_app/data/network/models/failure.dart';
@@ -56,6 +57,35 @@ class RepositoryImpl implements Repository {
         if (response.status == ApiInternalStatus.success) {
           // success reutrn either right
 
+          return Right(response.toDomain());
+        } else {
+          // failure return either left business error
+          return Left(
+            Failure(
+              ApiInternalStatus.failure,
+              response.message ?? ResponseMessage.defaultError,
+            ),
+          );
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      // its not connected to internet so return a failure
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Authentication>> register(
+    RegisterRequest registerRequest,
+  ) async {
+    if (await _networkInfo.isConnected) {
+      // its connected to internet so we can call the api
+      try {
+        final response = await _remoteDataSource.register(registerRequest);
+        if (response.status == ApiInternalStatus.success) {
+          // success reutrn either right
           return Right(response.toDomain());
         } else {
           // failure return either left business error
