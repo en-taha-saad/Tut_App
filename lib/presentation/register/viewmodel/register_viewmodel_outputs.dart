@@ -15,4 +15,6 @@ abstract class RegisterViewModelOutputs {
   Stream<String?> get outputErrorPassword;
 
   Stream<File> get outputIsProfilePictureValid;
+
+  Stream<bool> get outputAreAllInputsValid;
 }

@@ -85,6 +85,10 @@ class RegisterViewModel extends BaseViewModel
     );
   }
 
+  validate() {
+    inputAllInputsValid.add(null);
+  }
+
   @override
   Sink get inputEmail => _emailController.sink;
   @override
@@ -95,10 +99,20 @@ class RegisterViewModel extends BaseViewModel
   Sink get inputUserName => _userNameController.sink;
   @override
   Sink get inputPassword => _passwordController.sink;
+  @override
+  Sink get inputAllInputsValid => _areAllInputsValidController.sink;
 
   bool _isPasswordValid(String password) => password.length >= 6;
   bool _isMobileNumberValid(String mobileNumber) => mobileNumber.length >= 10;
   bool _isUserNameValid(String userName) => userName.length >= 8;
+  bool _areAllInputsValid() {
+    return registerObject.countryMobileCode.isNotEmpty &&
+        registerObject.password.isNotEmpty &&
+        registerObject.mobileNumber.isNotEmpty &&
+        registerObject.userName.isNotEmpty &&
+        registerObject.email.isNotEmpty &&
+        registerObject.profilePicture.isNotEmpty;
+  }
 
   @override
   Stream<String?> get outputErrorMobileNumber => outputIsMobileNumberValid.map(
@@ -137,6 +151,9 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<File> get outputIsProfilePictureValid =>
       _profilePictureController.stream.map((profilePicture) => profilePicture);
+  @override
+  Stream<bool> get outputAreAllInputsValid =>
+      _areAllInputsValidController.stream.map((_) => _areAllInputsValid());
 
   // set values
   @override
@@ -146,6 +163,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(email: "");
     }
+    validate();
   }
 
   @override
@@ -155,6 +173,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(countryMobileCode: "");
     }
+    validate();
   }
 
   @override
@@ -164,6 +183,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(mobileNumber: "");
     }
+    validate();
   }
 
   @override
@@ -173,6 +193,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(userName: "");
     }
+    validate();
   }
 
   @override
@@ -182,6 +203,7 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(password: "");
     }
+    validate();
   }
 
   @override
@@ -193,5 +215,6 @@ class RegisterViewModel extends BaseViewModel
     } else {
       registerObject = registerObject.copyWith(profilePicture: "");
     }
+    validate();
   }
 }

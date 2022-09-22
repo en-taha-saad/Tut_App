@@ -16,4 +16,5 @@ abstract class RegisterViewModelInputs {
   Sink get inputEmail;
   Sink get inputPassword;
   Sink get inputProfilePicture;
+  Sink get inputAllInputsValid;
 }
