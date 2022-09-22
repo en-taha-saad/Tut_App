@@ -1,12 +1,18 @@
+import 'dart:io';
+
 abstract class RegisterViewModelOutputs {
   // stream controller output
-
   Stream<bool> get outputIsUserNameValid;
-  Stream<bool> get outputIsCountryMobileCodeValid;
-  Stream<bool> get outputIsMobileNumberValid;
-  Stream<bool> get outputIsEmailValid;
-  Stream<bool> get outputIsPasswordValid;
-  Stream<bool> get outputIsProfilePictureValid;
+  Stream<String?> get outputErrorUserName;
 
-  Stream<bool> get outputAreAllInputsValid;
+  Stream<bool> get outputIsMobileNumberValid;
+  Stream<String?> get outputErrorMobileNumber;
+
+  Stream<bool> get outputIsEmailValid;
+  Stream<String?> get outputErrorEmail;
+
+  Stream<bool> get outputIsPasswordValid;
+  Stream<String?> get outputErrorPassword;
+
+  Stream<File> get outputIsProfilePictureValid;
 }

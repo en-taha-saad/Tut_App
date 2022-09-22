@@ -1,18 +1,17 @@
 // inputs mean that "Orders" that our view model will receive from view
+import 'dart:io';
+
 abstract class RegisterViewModelInputs {
   setUserName(String username);
-  setCountryMobileCode(String countryMobileCode);
+  setCountryCode(String countryCode);
   setMobileNumber(String mobileNumber);
   setEmail(String email);
   setPassword(String password);
-  setProfilePicture(String profilePicture);
+  setProfilePicture(File profilePicture);
 
   register();
 
-  // stream controller input
-  Sink get inputAreAllInputsValid;
   Sink get inputUserName;
-  Sink get inputCountryMobileCode;
   Sink get inputMobileNumber;
   Sink get inputEmail;
   Sink get inputPassword;

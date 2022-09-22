@@ -29,4 +29,9 @@ class AppStrings {
   static const retryAgain = "Retry again";
   static const ok = "Ok";
   static const success = "Success";
+  static const userNameInvalid = "user name should be at least 8 chars";
+  static const emailInvalid = "email format is wrong";
+  static const passwordInvalid = "password should be at least 6 chars";
+  static const mobileNumberInvalid =
+      "mobile number should be at least 10 digits";
 }
