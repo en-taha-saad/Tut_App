@@ -5,7 +5,6 @@ class RegisterUseCaseInput {
   String email;
   String password;
   String profilePicture;
-
   RegisterUseCaseInput(
     this.userName,
     this.countryMobileCode,
