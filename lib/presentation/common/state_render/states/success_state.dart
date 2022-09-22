@@ -3,12 +3,12 @@ import 'package:flutter_app/presentation/common/state_render/states/state_render
 
 // error state (full screen, popup)
 class SuccessState extends FlowState {
-  StateRendererType stateRendererType;
   String message;
-  SuccessState(this.stateRendererType, this.message);
+  SuccessState(this.message);
   @override
-  StateRendererType getStateRendererType() => stateRendererType;
+  StateRendererType getStateRendererType() =>
+      StateRendererType.popupSuccessState;
 
   @override
-  String getMessage() => "Success\n$message";
+  String getMessage() => message;
 }

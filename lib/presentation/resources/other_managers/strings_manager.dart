@@ -28,4 +28,5 @@ class AppStrings {
   static const loading = "Loading...";
   static const retryAgain = "Retry again";
   static const ok = "Ok";
+  static const success = "Success";
 }

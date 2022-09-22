@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/app/constants.dart';
 import 'package:flutter_app/presentation/common/state_render/states/content_state.dart';
 import 'package:flutter_app/presentation/common/state_render/states/empty_state.dart';
 import 'package:flutter_app/presentation/common/state_render/states/error_state.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_app/presentation/common/state_render/states/loading_stat
 import 'package:flutter_app/presentation/common/state_render/state_renderer.dart';
 import 'package:flutter_app/presentation/common/state_render/states/state_renderer_type.dart';
 import 'package:flutter_app/presentation/common/state_render/states/success_state.dart';
+import 'package:flutter_app/presentation/resources/other_managers/strings_manager.dart';
 
 extension FlowStateExtension on FlowState {
   Widget getScreenWidget(
@@ -71,6 +73,7 @@ extension FlowStateExtension on FlowState {
               context,
               getStateRendererType(),
               getMessage(),
+              title: AppStrings.success,
             );
             // show content screen
             return contentScreenWidget;
@@ -107,8 +110,9 @@ extension FlowStateExtension on FlowState {
     }
   }
 
-  showPopup(BuildContext context, StateRendererType stateRendererType,
-      String message) {
+  showPopup(
+      BuildContext context, StateRendererType stateRendererType, String message,
+      {String title = Constants.empty}) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         showDialog(
@@ -117,6 +121,7 @@ extension FlowStateExtension on FlowState {
             return StateRenderer(
               stateRendererType: stateRendererType,
               message: message,
+              title: title,
               retryActionFunction: () {},
             );
           },

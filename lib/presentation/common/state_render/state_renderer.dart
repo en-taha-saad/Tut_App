@@ -18,7 +18,7 @@ class StateRenderer extends StatelessWidget {
     super.key,
     required this.stateRendererType,
     this.message = AppStrings.loading,
-    this.title = '',
+    this.title = 'Success',
     required this.retryActionFunction,
   });
 
@@ -46,6 +46,7 @@ class StateRenderer extends StatelessWidget {
           context,
           [
             _getAnimatedImage(JsonAssets.success),
+            _getMessage(title),
             _getMessage(message),
             _getRetryButton(AppStrings.ok, context),
           ],

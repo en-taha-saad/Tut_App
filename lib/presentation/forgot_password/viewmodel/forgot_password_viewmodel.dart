@@ -49,10 +49,7 @@ class ForgotPasswordViewModel extends BaseViewModel
       (supportMessage) {
         // right -> success (data)
         inputState.add(
-          SuccessState(
-            StateRendererType.popupSuccessState,
-            supportMessage,
-          ),
+          SuccessState(supportMessage),
         );
         // _areSentVerificationStreamController.add(false);
       },
