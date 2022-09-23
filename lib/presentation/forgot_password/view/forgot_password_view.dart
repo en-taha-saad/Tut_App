@@ -62,7 +62,11 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   Widget _getContentWidget() {
     return Scaffold(
       backgroundColor: ColorManager.white,
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: ColorManager.white,
+        elevation: AppSize.s0,
+        iconTheme: IconThemeData(color: ColorManager.primary),
+      ),
       body: Container(
         padding: const EdgeInsets.only(top: AppPadding.p100),
         child: SingleChildScrollView(

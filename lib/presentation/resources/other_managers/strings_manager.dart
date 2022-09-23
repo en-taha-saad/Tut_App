@@ -16,11 +16,14 @@ class AppStrings {
   static const skip = "Skip";
   static const username = "Username";
   static const email = "Email";
+  static const mobileNumber = "Mobile Number";
   static const password = "Password";
   static const usernameError = "Please enter your userName";
   static const emailError = "Please enter your email";
   static const passwordError = "Please enter your password";
   static const login = "Login";
+  static const register = "Register";
+  static const haveAccount = "Already Have an account? Login";
   static const resetPassword = "Reset Password";
   static const resendVerification = "Didn’t recieve email ? Resesnd";
   static const forgetPassword = "Forget password";
@@ -34,4 +37,5 @@ class AppStrings {
   static const passwordInvalid = "password should be at least 6 chars";
   static const mobileNumberInvalid =
       "mobile number should be at least 10 digits";
+  static const profilePicture = "Profile picture";
 }
