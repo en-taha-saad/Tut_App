@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/constants.dart';
 import 'package:flutter_app/app/dependency_injections/init_app_module.dart';
