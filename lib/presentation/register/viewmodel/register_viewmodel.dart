@@ -38,6 +38,9 @@ class RegisterViewModel extends BaseViewModel
   final StreamController _areAllInputsValidController =
       StreamController<void>.broadcast();
 
+  StreamController isUserRegisteredInSuccessfullyStreamController =
+      StreamController<bool>();
+
   @override
   void dispose() {
     super.dispose();
@@ -48,6 +51,7 @@ class RegisterViewModel extends BaseViewModel
     _passwordController.close();
     _profilePictureController.close();
     _areAllInputsValidController.close();
+    isUserRegisteredInSuccessfullyStreamController.close();
   }
 
   @override
@@ -85,6 +89,8 @@ class RegisterViewModel extends BaseViewModel
       (data) {
         // right -> success (data)
         inputState.add(ContentState());
+        isUserRegisteredInSuccessfullyStreamController.add(true);
+
         debugPrint("data = ${data.customer?.name}");
       },
     );
@@ -171,6 +177,7 @@ class RegisterViewModel extends BaseViewModel
   // set values
   @override
   setEmail(String email) {
+    inputEmail.add(email);
     if (isEmailValid(email)) {
       registerObject = registerObject.copyWith(email: email);
     } else {
@@ -181,8 +188,8 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setCountryCode(String countryCode) {
+    inputMobileNumberCode.add(countryCode);
     if (countryCode.isNotEmpty) {
-      inputMobileNumberCode.add(countryCode);
       registerObject = registerObject.copyWith(countryMobileCode: countryCode);
     } else {
       registerObject = registerObject.copyWith(countryMobileCode: "");
@@ -192,6 +199,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setMobileNumber(String mobileNumber) {
+    inputMobileNumber.add(mobileNumber);
     if (_isMobileNumberValid(mobileNumber)) {
       registerObject = registerObject.copyWith(mobileNumber: mobileNumber);
     } else {
@@ -202,6 +210,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setUserName(String username) {
+    inputUserName.add(username);
     if (_isUserNameValid(username)) {
       registerObject = registerObject.copyWith(userName: username);
     } else {
@@ -212,6 +221,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setPassword(String password) {
+    inputPassword.add(password);
     if (_isPasswordValid(password)) {
       registerObject = registerObject.copyWith(password: password);
     } else {
@@ -222,6 +232,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setProfilePicture(File profilePicture) {
+    inputProfilePicture.add(profilePicture);
     if (profilePicture.path.isNotEmpty) {
       registerObject = registerObject.copyWith(
         profilePicture: profilePicture.path,

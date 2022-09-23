@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_app/app/app_prefs.dart';
 import 'package:flutter_app/app/constants.dart';
 import 'package:flutter_app/app/dependency_injections/init_app_module.dart';
 import 'package:flutter_app/presentation/common/state_render/states/flow_state.dart';
@@ -28,6 +30,7 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   final RegisterViewModel _viewModel = instance<RegisterViewModel>();
   final ImagePicker _imagePicker = instance<ImagePicker>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _mobileNumberController = TextEditingController();
@@ -48,6 +51,16 @@ class _RegisterViewState extends State<RegisterView> {
     });
     _userPasswordController.addListener(() {
       _viewModel.setPassword(_userPasswordController.text);
+    });
+    _viewModel.isUserRegisteredInSuccessfullyStreamController.stream
+        .listen((isLoggedIn) {
+      if (isLoggedIn) {
+        // navigate to main screen
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          _appPreferences.setIsUserLoggedIn();
+          Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+        });
+      }
     });
   }
 
@@ -246,7 +259,9 @@ class _RegisterViewState extends State<RegisterView> {
                 child: Container(
                   height: AppSize.s40,
                   decoration: BoxDecoration(
-                    border: Border.all(color: ColorManager.lightGrey),
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(AppSize.s8)),
+                    border: Border.all(color: ColorManager.grey),
                   ),
                   child: GestureDetector(
                     child: _getMediaWidget(),
@@ -290,10 +305,7 @@ class _RegisterViewState extends State<RegisterView> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          Routes.loginRoute,
-                        );
+                        Navigator.of(context).pop();
                       },
                       child: Text(
                         AppStrings.haveAccount,
