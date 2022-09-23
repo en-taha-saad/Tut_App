@@ -8,13 +8,15 @@ abstract class RegisterViewModelOutputs {
   Stream<bool> get outputIsMobileNumberValid;
   Stream<String?> get outputErrorMobileNumber;
 
+  Stream<String?> get outputMobileNumberCode;
+
   Stream<bool> get outputIsEmailValid;
   Stream<String?> get outputErrorEmail;
 
   Stream<bool> get outputIsPasswordValid;
   Stream<String?> get outputErrorPassword;
 
-  Stream<File> get outputIsProfilePictureValid;
+  Stream<File> get outputProfilePicture;
 
   Stream<bool> get outputAreAllInputsValid;
 }

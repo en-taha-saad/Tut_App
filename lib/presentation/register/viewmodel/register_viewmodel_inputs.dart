@@ -13,6 +13,7 @@ abstract class RegisterViewModelInputs {
 
   Sink get inputUserName;
   Sink get inputMobileNumber;
+  Sink get inputMobileNumberCode;
   Sink get inputEmail;
   Sink get inputPassword;
   Sink get inputProfilePicture;

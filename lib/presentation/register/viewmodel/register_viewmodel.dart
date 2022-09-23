@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/rendering.dart';
+import 'package:flutter_app/app/constants.dart';
 import 'package:flutter_app/app/functions.dart';
 import 'package:flutter_app/domain/usecase/register_usecase/register_usecase.dart';
 import 'package:flutter_app/domain/usecase/register_usecase/register_usecase_input.dart';
@@ -25,6 +26,9 @@ class RegisterViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   final StreamController _mobileNumberController =
       StreamController<String>.broadcast();
+  final StreamController _mobileNumberCodeController =
+      StreamController<String>.broadcast();
+
   final StreamController _emailController =
       StreamController<String>.broadcast();
   final StreamController _passwordController =
@@ -37,6 +41,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   void dispose() {
     super.dispose();
+    _mobileNumberCodeController.close();
     _userNameController.close();
     _mobileNumberController.close();
     _emailController.close();
@@ -101,6 +106,8 @@ class RegisterViewModel extends BaseViewModel
   Sink get inputPassword => _passwordController.sink;
   @override
   Sink get inputAllInputsValid => _areAllInputsValidController.sink;
+  @override
+  Sink get inputMobileNumberCode => _mobileNumberCodeController.sink;
 
   bool _isPasswordValid(String password) => password.length >= 6;
   bool _isMobileNumberValid(String mobileNumber) => mobileNumber.length >= 10;
@@ -130,6 +137,11 @@ class RegisterViewModel extends BaseViewModel
   Stream<String?> get outputErrorPassword => outputIsPasswordValid.map(
         (isValid) => isValid ? null : AppStrings.passwordInvalid,
       );
+  @override
+  Stream<String?> get outputMobileNumberCode =>
+      _mobileNumberCodeController.stream.map(
+        (countryCode) => countryCode ?? Constants.countryFlag,
+      );
 
   @override
   Stream<bool> get outputIsEmailValid => _emailController.stream.map(
@@ -148,8 +160,9 @@ class RegisterViewModel extends BaseViewModel
   Stream<bool> get outputIsPasswordValid => _passwordController.stream.map(
         (password) => _isPasswordValid(password),
       );
+
   @override
-  Stream<File> get outputIsProfilePictureValid =>
+  Stream<File> get outputProfilePicture =>
       _profilePictureController.stream.map((profilePicture) => profilePicture);
   @override
   Stream<bool> get outputAreAllInputsValid =>
@@ -169,6 +182,7 @@ class RegisterViewModel extends BaseViewModel
   @override
   setCountryCode(String countryCode) {
     if (countryCode.isNotEmpty) {
+      inputMobileNumberCode.add(countryCode);
       registerObject = registerObject.copyWith(countryMobileCode: countryCode);
     } else {
       registerObject = registerObject.copyWith(countryMobileCode: "");
