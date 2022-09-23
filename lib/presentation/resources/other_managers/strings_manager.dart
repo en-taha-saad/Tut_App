@@ -38,4 +38,6 @@ class AppStrings {
   static const mobileNumberInvalid =
       "mobile number should be at least 10 digits";
   static const profilePicture = "Profile picture";
+  static const photoGallery = "Photo from galley";
+  static const photoCamera = "Photo from camera";
 }

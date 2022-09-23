@@ -3,6 +3,7 @@ import 'package:flutter_app/domain/repository/repository.dart';
 import 'package:flutter_app/domain/usecase/register_usecase/register_usecase.dart';
 import 'package:flutter_app/presentation/register/viewmodel/register_viewmodel.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 
 initRegisterModule() {
   // login module, only login dependencies are here
@@ -16,5 +17,6 @@ initRegisterModule() {
     instance.registerFactory<RegisterViewModel>(
       () => RegisterViewModel(instance<RegisterUseCase>()),
     );
+    instance.registerFactory<ImagePicker>(() => ImagePicker());
   }
 }

@@ -16,6 +16,7 @@ import 'package:flutter_app/presentation/resources/values_manager/app_size.dart'
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -27,6 +28,8 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   final RegisterViewModel _viewModel = instance<RegisterViewModel>();
+  final ImagePicker _imagePicker = instance<ImagePicker>();
+
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _mobileNumberController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -330,6 +333,48 @@ class _RegisterViewState extends State<RegisterView> {
         ],
       ),
     );
+  }
+
+  _showPicker(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                trailing: const Icon(Icons.arrow_forward),
+                leading: const Icon(Icons.camera),
+                title: const Text(AppStrings.photoGallery),
+                onTap: () {
+                  _imageFromGallery();
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                trailing: const Icon(Icons.arrow_forward),
+                leading: const Icon(Icons.camera_alt_outlined),
+                title: const Text(AppStrings.photoCamera),
+                onTap: () {
+                  _imageFromCamera();
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  _imageFromGallery() async {
+    var image = await _imagePicker.pickImage(source: ImageSource.gallery);
+    _viewModel.setProfilePicture(File(image?.path ?? ""));
+  }
+
+  _imageFromCamera() async {
+    var image = await _imagePicker.pickImage(source: ImageSource.camera);
+    _viewModel.setProfilePicture(File(image?.path ?? ""));
   }
 
   Widget _imagePickedByUser(File? image) {
