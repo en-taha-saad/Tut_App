@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_app/domain/models/onboarding/sliderobject.dart';
-import 'package:flutter_app/domain/models/onboarding/sliderviewobject.dart';
+import 'package:flutter_app/domain/models/onboarding_models/sliderobject.dart';
+import 'package:flutter_app/domain/models/onboarding_models/sliderviewobject.dart';
 import 'package:flutter_app/presentation/onboarding/viewmodel/onboarding_viewmodel_inputs.dart';
 import 'package:flutter_app/presentation/onboarding/viewmodel/onboarding_viewmodel_outputs.dart';
 import 'package:flutter_app/presentation/resources/other_managers/assets_manager.dart';

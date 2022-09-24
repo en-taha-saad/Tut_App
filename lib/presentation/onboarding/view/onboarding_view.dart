@@ -1,7 +1,7 @@
 import 'package:flutter_app/app/app_prefs.dart';
 import 'package:flutter_app/app/dependency_injections/init_app_module.dart';
-import 'package:flutter_app/domain/models/onboarding/sliderobject.dart';
-import 'package:flutter_app/domain/models/onboarding/sliderviewobject.dart';
+import 'package:flutter_app/domain/models/onboarding_models/sliderobject.dart';
+import 'package:flutter_app/domain/models/onboarding_models/sliderviewobject.dart';
 import 'package:flutter_app/presentation/onboarding/viewmodel/onboarding_viewmodel.dart';
 import 'package:flutter_app/presentation/resources/other_managers/assets_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/color_manager.dart';

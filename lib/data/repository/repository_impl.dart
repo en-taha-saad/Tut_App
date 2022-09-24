@@ -1,5 +1,5 @@
 import 'package:flutter_app/data/data_sources/remote/remote_data_source.dart';
-import 'package:flutter_app/data/mappers/authentication_response_mapper.dart';
+import 'package:flutter_app/data/mappers/login_register_mappers/authentication_response_mapper.dart';
 import 'package:flutter_app/data/mappers/forgot_password_response_mapper.dart';
 import 'package:flutter_app/data/network/error_handler/api_internal_status.dart';
 import 'package:flutter_app/data/network/error_handler/datasource_enum.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_app/data/network/error_handler/error_handler.dart';
 import 'package:flutter_app/data/network/error_handler/response_messages.dart';
 import 'package:flutter_app/data/network/internet_checker/network_info.dart';
 import 'package:flutter_app/data/network/models/register_request.dart';
-import 'package:flutter_app/domain/models/login/authentication.dart';
+import 'package:flutter_app/domain/models/login_register_models/authentication.dart';
 import 'package:flutter_app/data/network/models/loginrequest.dart';
 import 'package:flutter_app/data/network/models/failure.dart';
 import 'package:dartz/dartz.dart';

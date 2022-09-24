@@ -1,4 +1,4 @@
-import 'package:flutter_app/domain/models/onboarding/sliderobject.dart';
+import 'package:flutter_app/domain/models/onboarding_models/sliderobject.dart';
 
 class SliderViewObject {
   SliderObject sliderObject;
