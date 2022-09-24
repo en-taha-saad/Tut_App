@@ -23,6 +23,7 @@ dependencies:
   lottie: ^1.4.3
   pretty_dio_logger: ^1.1.1
   retrofit: ^3.0.1+1
+  rxdart: ^0.27.5
   shared_preferences: ^2.0.15
 
 dev_dependencies:
