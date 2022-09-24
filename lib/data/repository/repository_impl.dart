@@ -1,6 +1,6 @@
 import 'package:flutter_app/data/data_sources/remote/remote_data_source.dart';
 import 'package:flutter_app/data/mappers/login_register_mappers/authentication_response_mapper.dart';
-import 'package:flutter_app/data/mappers/forgot_password_response_mapper.dart';
+import 'package:flutter_app/data/mappers/forgot_password_response_mappers/forgot_password_response_mapper.dart';
 import 'package:flutter_app/data/network/error_handler/api_internal_status.dart';
 import 'package:flutter_app/data/network/error_handler/datasource_enum.dart';
 import 'package:flutter_app/data/network/error_handler/datasource_extension.dart';

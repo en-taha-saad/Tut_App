@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app/app/constants.dart';
 import 'package:flutter_app/data/responses/forget_password_responses/forget_password_responses.dart';
+import 'package:flutter_app/data/responses/home_responses/home_responses.dart';
 import 'package:flutter_app/data/responses/login_register_responses/login_register_responses.dart';
 import 'package:retrofit/http.dart';
 part 'app_api.g.dart';
@@ -27,4 +28,7 @@ abstract class AppServiceClient {
     @Field("password") String password,
     @Field("profile_picture") String profilePicture,
   );
+
+  @GET("/home")
+  Future<HomeResponse> getHomeData();
 }
