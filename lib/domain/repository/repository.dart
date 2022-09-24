@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_app/data/network/models/failure.dart';
 import 'package:flutter_app/data/network/models/loginrequest.dart';
 import 'package:flutter_app/data/network/models/register_request.dart';
+import 'package:flutter_app/domain/models/home_models/home_object.dart';
 import 'package:flutter_app/domain/models/login_register_models/authentication.dart';
 
 abstract class Repository {
@@ -10,4 +11,5 @@ abstract class Repository {
   Future<Either<Failure, Authentication>> register(
     RegisterRequest registerRequest,
   );
+  Future<Either<Failure, HomeObject>> getHomeData();
 }
