@@ -3,6 +3,7 @@ import 'package:flutter_app/data/network/app_api.dart';
 import 'package:flutter_app/data/network/models/loginrequest.dart';
 import 'package:flutter_app/data/network/models/register_request.dart';
 import 'package:flutter_app/data/responses/forget_password_responses/forget_password_responses.dart';
+import 'package:flutter_app/data/responses/home_responses/home_responses.dart';
 import 'package:flutter_app/data/responses/login_register_responses/login_register_responses.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -34,5 +35,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       registerRequest.password,
       registerRequest.profilePicture,
     );
+  }
+
+  @override
+  Future<HomeResponse> getHomeData() async {
+    return await _appServiceClient.getHomeData();
   }
 }
