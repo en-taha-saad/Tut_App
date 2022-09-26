@@ -1,5 +1,5 @@
 class Store {
-  String id;
+  int id;
   String title;
   String image;
 

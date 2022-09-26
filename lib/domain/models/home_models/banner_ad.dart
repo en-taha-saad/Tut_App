@@ -1,5 +1,5 @@
 class BannerAd {
-  String id;
+  int id;
   String title;
   String image;
   String link;
