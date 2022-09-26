@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/dependency_injections/init_app_module.dart';
 import 'package:flutter_app/domain/models/home_models/banner_ad.dart';
+import 'package:flutter_app/domain/models/home_models/homeview_object.dart';
 import 'package:flutter_app/domain/models/home_models/service.dart';
 import 'package:flutter_app/domain/models/home_models/store.dart';
 import 'package:flutter_app/presentation/common/state_render/states/flow_state.dart';
@@ -59,17 +60,22 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _getContentWidget() {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _getBannersCarousel(),
-          _getSection(AppStrings.services),
-          _getServices(),
-          _getSection(AppStrings.stores),
-          _getStores()
-        ],
-      ),
+    return StreamBuilder<HomeViewObject>(
+      stream: _viewModel.outputHomeViewObject,
+      builder: (context, snapshot) {
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _getBannersCarousel(snapshot.data?.banners),
+              _getSection(AppStrings.services),
+              _getServicesWidget(snapshot.data?.services),
+              _getSection(AppStrings.stores),
+              _getStoresWidget(snapshot.data?.stores),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -88,16 +94,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _getBannersCarousel() {
-    return StreamBuilder<List<BannerAd>>(
-      stream: _viewModel.outputBanners,
-      builder: (context, snapshot) {
-        return _getBannerWidget(snapshot.data);
-      },
-    );
-  }
-
-  Widget _getBannerWidget(List<BannerAd>? banners) {
+  Widget _getBannersCarousel(List<BannerAd>? banners) {
     if (banners != null) {
       return CarouselSlider(
         items: banners
@@ -131,14 +128,6 @@ class _HomePageState extends State<HomePage> {
     } else {
       return Container();
     }
-  }
-
-  Widget _getServices() {
-    return StreamBuilder<List<Service>>(
-        stream: _viewModel.outputServices,
-        builder: (context, snapshot) {
-          return _getServicesWidget(snapshot.data);
-        });
   }
 
   Widget _getServicesWidget(List<Service>? services) {
@@ -197,15 +186,6 @@ class _HomePageState extends State<HomePage> {
     } else {
       return Container();
     }
-  }
-
-  Widget _getStores() {
-    return StreamBuilder<List<Store>>(
-      stream: _viewModel.outputStores,
-      builder: (context, snapshot) {
-        return _getStoresWidget(snapshot.data);
-      },
-    );
   }
 
   Widget _getStoresWidget(List<Store>? stores) {

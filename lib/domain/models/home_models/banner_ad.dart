@@ -6,3 +6,4 @@ class BannerAd {
 
   BannerAd(this.id, this.title, this.image, this.link);
 }
+
