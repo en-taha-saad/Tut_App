@@ -44,4 +44,6 @@ class AppStrings {
   static const settings = "Settings";
   static const notifications = "Notifications";
   static const search = "Search";
+  static const services = "Services";
+  static const stores = "Stores";
 }
