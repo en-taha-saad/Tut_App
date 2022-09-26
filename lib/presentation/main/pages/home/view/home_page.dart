@@ -2,11 +2,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/dependency_injections/init_app_module.dart';
 import 'package:flutter_app/domain/models/home_models/banner_ad.dart';
+import 'package:flutter_app/domain/models/home_models/service.dart';
 import 'package:flutter_app/presentation/common/state_render/states/flow_state.dart';
 import 'package:flutter_app/presentation/main/pages/home/viewmodel/home_page_viewmodel.dart';
 import 'package:flutter_app/presentation/resources/other_managers/color_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/strings_manager.dart';
 import 'package:flutter_app/presentation/common/state_render/states/flow_state_extension.dart';
+import 'package:flutter_app/presentation/resources/values_manager/app_margin.dart';
 import 'package:flutter_app/presentation/resources/values_manager/app_padding.dart';
 import 'package:flutter_app/presentation/resources/values_manager/app_size.dart';
 
@@ -130,7 +132,69 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _getServices() {
-    return const Center();
+    return StreamBuilder<List<Service>>(
+        stream: _viewModel.outputServices,
+        builder: (context, snapshot) {
+          return _getServicesWidget(snapshot.data);
+        });
+  }
+
+  Widget _getServicesWidget(List<Service>? services) {
+    if (services != null) {
+      return Padding(
+        padding: const EdgeInsets.only(
+          left: AppPadding.p12,
+          right: AppPadding.p12,
+        ),
+        child: Container(
+          height: AppSize.s140,
+          margin: const EdgeInsets.symmetric(vertical: AppMargin.m12),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: services
+                .map(
+                  (service) => Card(
+                    elevation: AppSize.s4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSize.s12),
+                      side: BorderSide(
+                        color: ColorManager.primary,
+                        width: AppSize.s1,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(AppSize.s12),
+                          child: Image.network(
+                            service.image,
+                            fit: BoxFit.cover,
+                            width: AppSize.s100,
+                            height: AppSize.s100,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: AppPadding.p8),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              service.title,
+                              style: Theme.of(context).textTheme.caption,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   Widget _getStores() {
