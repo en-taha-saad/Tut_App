@@ -6,14 +6,14 @@ import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 
 initRegisterModule() {
-  // login module, only login dependencies are here
+  // register module, only login dependencies are here
 
   if (!GetIt.I.isRegistered<RegisterUseCase>()) {
-    // login use case instance
+    // register use case instance
     instance.registerFactory<RegisterUseCase>(
       () => RegisterUseCase(instance<Repository>()),
     );
-    // login view model instance
+    // register view model instance
     instance.registerFactory<RegisterViewModel>(
       () => RegisterViewModel(instance<RegisterUseCase>()),
     );
