@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/app/dependency_injections/init_app_module.dart';
 import 'package:flutter_app/domain/models/home_models/banner_ad.dart';
 import 'package:flutter_app/domain/models/home_models/service.dart';
+import 'package:flutter_app/domain/models/home_models/store.dart';
 import 'package:flutter_app/presentation/common/state_render/states/flow_state.dart';
 import 'package:flutter_app/presentation/main/pages/home/viewmodel/home_page_viewmodel.dart';
 import 'package:flutter_app/presentation/resources/other_managers/color_manager.dart';
 import 'package:flutter_app/presentation/resources/other_managers/strings_manager.dart';
 import 'package:flutter_app/presentation/common/state_render/states/flow_state_extension.dart';
+import 'package:flutter_app/presentation/resources/routes_manager/routes.dart';
 import 'package:flutter_app/presentation/resources/values_manager/app_margin.dart';
 import 'package:flutter_app/presentation/resources/values_manager/app_padding.dart';
 import 'package:flutter_app/presentation/resources/values_manager/app_size.dart';
@@ -120,7 +122,7 @@ class _HomePageState extends State<HomePage> {
             )
             .toList(),
         options: CarouselOptions(
-          height: AppSize.s90,
+          height: AppSize.s190,
           autoPlay: true,
           enableInfiniteScroll: true,
           enlargeCenterPage: true,
@@ -147,7 +149,7 @@ class _HomePageState extends State<HomePage> {
           right: AppPadding.p12,
         ),
         child: Container(
-          height: AppSize.s140,
+          height: AppSize.s160,
           margin: const EdgeInsets.symmetric(vertical: AppMargin.m12),
           child: ListView(
             scrollDirection: Axis.horizontal,
@@ -158,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppSize.s12),
                       side: BorderSide(
-                        color: ColorManager.primary,
+                        color: ColorManager.white,
                         width: AppSize.s1,
                       ),
                     ),
@@ -169,8 +171,8 @@ class _HomePageState extends State<HomePage> {
                           child: Image.network(
                             service.image,
                             fit: BoxFit.cover,
-                            width: AppSize.s100,
-                            height: AppSize.s100,
+                            width: AppSize.s120,
+                            height: AppSize.s120,
                           ),
                         ),
                         Padding(
@@ -179,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                             alignment: Alignment.center,
                             child: Text(
                               service.title,
-                              style: Theme.of(context).textTheme.caption,
+                              style: Theme.of(context).textTheme.bodyMedium,
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -198,6 +200,55 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _getStores() {
-    return const Center();
+    return StreamBuilder<List<Store>>(
+      stream: _viewModel.outputStores,
+      builder: (context, snapshot) {
+        return _getStoresWidget(snapshot.data);
+      },
+    );
+  }
+
+  Widget _getStoresWidget(List<Store>? stores) {
+    if (stores != null) {
+      return Padding(
+        padding: const EdgeInsets.only(
+          left: AppPadding.p12,
+          right: AppPadding.p12,
+          top: AppPadding.p12,
+        ),
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            GridView.count(
+              crossAxisCount: AppSize.s2,
+              crossAxisSpacing: AppSize.s8,
+              mainAxisSpacing: AppSize.s8,
+              physics: const ScrollPhysics(),
+              shrinkWrap: true,
+              children: List.generate(
+                stores.length,
+                (index) {
+                  return InkWell(
+                    onTap: () {
+                      // navigate to store details screen
+                      Navigator.of(context).pushNamed(Routes.storeDetailsRoute);
+                    },
+                    child: Card(
+                      elevation: AppSize.s4,
+                      child: Image.network(
+                        stores[index].image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 }

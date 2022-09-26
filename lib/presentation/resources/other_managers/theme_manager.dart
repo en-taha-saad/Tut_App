@@ -76,12 +76,12 @@ ThemeData getApplicationTheme() {
       ),
       bodyLarge: getRegularStyle(color: ColorManager.grey1),
       bodySmall: getRegularStyle(color: ColorManager.grey),
-      labelSmall: getBoldStyle(
-        color: ColorManager.primary,
+      bodyMedium: getRegularStyle(
+        color: ColorManager.grey2,
         fontSize: FontSize.s12,
       ),
-      caption: getRegularStyle(
-        color: ColorManager.grey2,
+      labelSmall: getBoldStyle(
+        color: ColorManager.primary,
         fontSize: FontSize.s12,
       ),
     ),
