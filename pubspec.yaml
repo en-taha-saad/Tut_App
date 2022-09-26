@@ -7,6 +7,7 @@ environment:
 
 dependencies:
   analyzer: ^4.7.0
+  carousel_slider: ^4.1.1
   country_picker: ^2.0.16
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
