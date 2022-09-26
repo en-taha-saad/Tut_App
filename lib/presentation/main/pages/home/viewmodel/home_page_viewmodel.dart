@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter_app/domain/models/home_models/banner_ad.dart';
@@ -11,20 +10,20 @@ import 'package:flutter_app/presentation/main/pages/home/viewmodel/home_viewmode
 import 'package:rxdart/rxdart.dart';
 
 class HomeViewModel extends BaseViewModel
-    with HomeViewModelInput, HomeViewModelOutput {  final StreamController _bannersStreamController = BehaviorSubject<
-      List<BannerAd>>();
-  final StreamController _servicesStreamController = BehaviorSubject<
-      List<Service>>();
-  final StreamController _storesStreamController = BehaviorSubject<
-      List<Store>>();
+    with HomeViewModelInput, HomeViewModelOutput {
+  final StreamController _bannersStreamController =
+      BehaviorSubject<List<BannerAd>>();
+  final StreamController _servicesStreamController =
+      BehaviorSubject<List<Service>>();
+  final StreamController _storesStreamController =
+      BehaviorSubject<List<Store>>();
 
   final HomeUseCase _homeUseCase;
 
-  HomeViewModel(this._homeUseCase)
+  HomeViewModel(this._homeUseCase);
 
   @override
-  void start() {
-  }
+  void start() {}
 
   @override
   void dispose() {
@@ -35,28 +34,21 @@ class HomeViewModel extends BaseViewModel
   }
 
   @override
-  // TODO: implement inputBanners
-  Sink get inputBanners => throw UnimplementedError();
-  
+  Sink get inputBanners => _bannersStreamController.sink;
   @override
-  // TODO: implement inputServices
-  Sink get inputServices => throw UnimplementedError();
-  
+  Sink get inputServices => _servicesStreamController.sink;
   @override
-  // TODO: implement inputStores
-  Sink get inputStores => throw UnimplementedError();
-  
-  @override
-  // TODO: implement outputBanners
-  Stream<List<BannerAd>> get outputBanners => throw UnimplementedError();
-  
-  @override
-  // TODO: implement outputServices
-  Stream<List<Service>> get outputServices => throw UnimplementedError();
-  
-  @override
-  // TODO: implement outputStores
-  Stream<List<Store>> get outputStores => throw UnimplementedError();
-  
+  Sink get inputStores => _storesStreamController.sink;
 
+  @override
+  Stream<List<BannerAd>> get outputBanners =>
+      _bannersStreamController.stream.map((banners) => banners);
+
+  @override
+  Stream<List<Service>> get outputServices =>
+      _servicesStreamController.stream.map((services) => services);
+
+  @override
+  Stream<List<Store>> get outputStores =>
+      _storesStreamController.stream.map((stores) => stores);
 }
