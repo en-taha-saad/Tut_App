@@ -42,34 +42,34 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SingleChildScrollView(
-        child: StreamBuilder<FlowState>(
-          stream: _viewModel.outputState,
-          builder: (context, snapshot) {
-            return snapshot.data?.getScreenWidget(
-                  context,
-                  _getContentWidget(),
-                  () {
-                    _viewModel.start();
-                  },
-                ) ??
-                _getContentWidget();
-          },
-        ),
+      child: StreamBuilder<FlowState>(
+        stream: _viewModel.outputState,
+        builder: (context, snapshot) {
+          return snapshot.data?.getScreenWidget(
+                context,
+                _getContentWidget(),
+                () {
+                  _viewModel.start();
+                },
+              ) ??
+              _getContentWidget();
+        },
       ),
     );
   }
 
   Widget _getContentWidget() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _getBannersCarousel(),
-        _getSection(AppStrings.services),
-        _getServices(),
-        _getSection(AppStrings.stores),
-        _getStores()
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _getBannersCarousel(),
+          _getSection(AppStrings.services),
+          _getServices(),
+          _getSection(AppStrings.stores),
+          _getStores()
+        ],
+      ),
     );
   }
 
