@@ -115,6 +115,7 @@ class RepositoryImpl implements Repository {
         final response = await _remoteDataSource.getHomeData();
         if (response.status == ApiInternalStatus.success) {
           // success reutrn either right
+          // save home response
           return Right(response.toDomain());
         } else {
           // failure return either left business error
